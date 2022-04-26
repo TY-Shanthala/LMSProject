@@ -6,10 +6,10 @@ import LayoutComponent from "./component/organism/LayoutComponent";
 function App() {
   return (
     <div>
-      <ModalComponent />
-      {/* <BrowserRouter>
+      {/* <ModalComponent /> */}
+      <BrowserRouter>
         <LayoutComponent />
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
