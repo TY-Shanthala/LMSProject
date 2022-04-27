@@ -43,5 +43,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@syncfusion/ej2-base": "^20.1.50",
+    "@syncfusion/ej2-react-charts": "^20.1.51",
+    "chart.js": "^3.7.1",
+    "react-chartjs-2": "^4.1.0"
   }
 }
