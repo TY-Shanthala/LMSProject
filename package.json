@@ -47,7 +47,9 @@
   "devDependencies": {
     "@syncfusion/ej2-base": "^20.1.50",
     "@syncfusion/ej2-react-charts": "^20.1.51",
+    "axios": "^0.27.2",
     "chart.js": "^3.7.1",
-    "react-chartjs-2": "^4.1.0"
+    "react-chartjs-2": "^4.1.0",
+    "rxjs": "^7.5.5"
   }
 }
