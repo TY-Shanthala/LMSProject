@@ -19,7 +19,6 @@ import Box from "@mui/system/Box";
 import Menu from "@mui/material/Menu";
 import Fade from "@mui/material/Fade";
 import { useState, useEffect } from "react";
-// import { makeStyles } from "@mui/styles";
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -27,9 +26,6 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SortIcon from "@mui/icons-material/Sort";
 import { Autocomplete, TextField } from "@mui/material";
-// import { messageService } from "../../services/rxjsServices";
-// import { ReactComponent as AddIndexIcon } from "../../assets/icons/add_variations-01.svg";
-// import { ReactComponent as MinusIndexIcon } from "../../assets/icons/add_variations-02.svg";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -226,10 +222,7 @@ function EnhancedTableHead(props) {
                 className="fs-12 fw-600"
               >
                 {headCell.label}
-                {/* <FilterAltOutlinedIcon
-                  className=" position-relative"
-                  fontSize="small"
-                /> */}
+
                 <Select
                   multiple
                   value={selected[headCell.id]}
@@ -434,17 +427,8 @@ export default function TableComponent({
   const handleMenuClose = () => {
     setMenuAnchorEl(null);
   };
-  //used for delete icon
-  const classes = useStyles();
 
-  // useEffect(() => {
-  //   const subscription = messageService.getMessage().subscribe((val) => {
-  //     setSearchText(val);
-  //   });
-  //   return () => {
-  //     subscription.unsubscribe();
-  //   };
-  // }, []);
+  const classes = useStyles();
 
   useEffect(() => {
     headCells.map((headCell) => {
@@ -455,22 +439,6 @@ export default function TableComponent({
     setRows(tablerow);
     setSelected([]);
   }, [tablerow]);
-
-  // useEffect(() => {
-  //   if (filterHead.length) {
-  //     let array = [];
-  //     filterHead.map((val) => {
-  //       array[val] = [
-  //         ...new Set(
-  //           tablerow.map((items) =>
-  //             items[val].key ? items[val].key : items[val]
-  //           )
-  //         ),
-  //       ];
-  //     });
-  //     setFilterOption(array);
-  //   }
-  // }, [filterHead]);
 
   useEffect(() => {
     requestSearch(searchText);
@@ -505,10 +473,6 @@ export default function TableComponent({
     setSelected([]);
   };
 
-  // useEffect(() => {
-  //   onSelectionChange(selected);
-  // }, [selected]);
-
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -527,15 +491,6 @@ export default function TableComponent({
     }
     setSelected(newSelected);
   };
-
-  // const handleChangePage = (event, newPage) => {
-  //   setPage(newPage);
-  // };
-
-  // const handleChangeRowsPerPage = (event) => {
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  //   setPage(0);
-  // };
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
@@ -568,8 +523,6 @@ export default function TableComponent({
             showCheckbox={showCheckbox}
           />
           <TableBody>
-            {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
@@ -623,20 +576,12 @@ export default function TableComponent({
                                   onClick={() => {
                                     onAddIndexClick(index);
                                   }}
-                                >
-                                  {/* <AddIndexIcon
-                                    style={{ width: "15px", cursor: "pointer" }}
-                                  /> */}
-                                </IconButton>
+                                ></IconButton>
                                 <IconButton
                                   onClick={() => {
                                     onMinusIndexClick(index);
                                   }}
-                                >
-                                  {/* <MinusIndexIcon
-                                    style={{ width: "15px", cursor: "pointer" }}
-                                  /> */}
-                                </IconButton>
+                                ></IconButton>
                               </div>
                             </div>
                           ) : (
@@ -699,17 +644,6 @@ export default function TableComponent({
             )}
           </TableBody>
         </Table>
-        {/* {rows.length > 0 && (
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        )} */}
       </TableContainer>
     </Box>
   );
