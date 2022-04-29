@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import LayoutComponent from "./component/organism/LayoutComponent";
 import "./style/dateComponent.scss";
+import Login from "./component/pages/login/Login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <LayoutComponent />
       </BrowserRouter>
+      {/* <Login /> */}
     </div>
   );
 }
