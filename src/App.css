@@ -27,6 +27,36 @@
 }
 
 /* modal style */
-.css-1fvltii{
+.css-1acyv19{
   border-radius: 12px;
+}
+
+/* Multipal select component */
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+  color: #666;
+  font-weight: bold;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item {
+  padding-left: 16px;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+  text-align: center;
+  cursor: default;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu {
+  max-height: 300px;
+}
+
+
+/* multipal selector */
+.ant-select-item-option-content{
+    z-index: 10560 !important;
+ 
 }
