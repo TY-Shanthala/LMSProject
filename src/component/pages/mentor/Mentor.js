@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import PiChart from "../../molicules/Pi-ChartComponent";
 
 export default function SimplePaper() {
   return (

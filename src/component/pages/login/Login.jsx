@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import image from "../../assets/login/Image.png";
+import image from "../../../assets/login/Image.png";
 import { Form, Button, CardGroup, Card } from "react-bootstrap";
-import LoginForm from "../../forms/LoginForm/LoginForm";
+import LoginForm from "../../forms/login/LoginForm";
 
 const Login = () => {
   return (
