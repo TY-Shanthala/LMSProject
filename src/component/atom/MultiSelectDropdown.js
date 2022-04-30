@@ -21,7 +21,7 @@ function MultiSelectDropdown({ value = "", label = "", onChange = () => {} }) {
     <div>
       <Select
         mode="multiple"
-        style={{ width: "100%" }}
+        style={{ width: "100%", zIndex: "2000px" }}
         onChange={onChange}
         optionLabelProp="label"
       >
