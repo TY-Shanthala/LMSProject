@@ -1,8 +1,8 @@
 import serviceUtil from "../Index";
 
-const batchGetAll = () => {
+const requestGetAll = () => {
   return serviceUtil
-    .get("lms/v1/admin/batch")
+    .get("")
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -13,9 +13,9 @@ const batchGetAll = () => {
     });
 };
 
-const batchSubmit = (payload) => {
+const requestSubmit = (payload) => {
   return serviceUtil
-    .post("lms/v1/admin/batch", payload)
+    .post("", payload)
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -26,4 +26,4 @@ const batchSubmit = (payload) => {
     });
 };
 
-export { batchGetAll, batchSubmit };
+export { requestGetAll, requestSubmit };

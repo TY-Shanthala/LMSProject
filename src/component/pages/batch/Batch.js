@@ -77,7 +77,6 @@ function Batch() {
         </Box>
       </Toolbar>
       <div classNamw="m-2">
-        {console.log(CONSTANTS.BATCH_HEADER, "CONSTANTS.BATCH_HEADER")}
         <TableComponent tablerow={rows} headCells={CONSTANTS.BATCH_HEADER} />
       </div>
       {openBatch && (

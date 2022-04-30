@@ -68,8 +68,8 @@ function BatchModal({ setOpenBatch, getTableData }) {
 
           <div className="mb-4">
             <p className="mb-0">Mentor Name</p>
-            {/* <SimpleDropdown /> */}
-            <InputComponent
+            <SimpleDropdown />
+            {/* <InputComponent
               value={defaultFormData.mentorName}
               onChange={(e) => {
                 setDefaultFormData({
@@ -77,13 +77,13 @@ function BatchModal({ setOpenBatch, getTableData }) {
                   mentorName: e.target.value,
                 });
               }}
-            />
+            /> */}
           </div>
 
           <div className="mb-4">
             <p className="mb-0">Technologies</p>
-            {/* <MultipleSelectCheckmarks modalWidth="100%" /> */}
-            <InputComponent
+            <MultipleSelectCheckmarks modalWidth="100%" />
+            {/* <InputComponent
               value={defaultFormData.technologies}
               onChange={(e) => {
                 let array = [];
@@ -93,7 +93,7 @@ function BatchModal({ setOpenBatch, getTableData }) {
                   technologies: array,
                 });
               }}
-            />
+            /> */}
           </div>
           <div className="mb-4">
             <p className="mb-0">Start Date</p>

@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       {/* <div className="m-5" style={{ width: "30%" }}>
-        <SimpleDropdown />
+        <TextAreaComponent />
       </div> */}
       <BrowserRouter>
         <LayoutComponent />
