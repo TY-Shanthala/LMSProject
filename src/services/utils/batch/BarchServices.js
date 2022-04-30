@@ -26,4 +26,17 @@ const batchSubmit = (payload) => {
     });
 };
 
-export { batchGetAll, batchSubmit };
+const batchDelete = (payload) => {
+  return serviceUtil
+    .deleteAll("", payload)
+    .then((res) => {
+      const data = res && res.data;
+      return { data };
+    })
+    .catch((err) => {
+      const errRes = err && err.response.data;
+      return { errRes };
+    });
+};
+
+export { batchGetAll, batchSubmit, batchDelete };
