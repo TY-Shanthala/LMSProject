@@ -89,3 +89,9 @@
   position: static !important;
   display: none !important;
 }
+
+
+/* text area component */
+textarea{
+  width: 100%;
+}

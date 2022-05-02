@@ -11,7 +11,7 @@ const REQUEST_HEADER = [
     nummeric: false,
     disablePadding: false,
     label: "Employee ID",
-    width: 100,
+    width: 120,
   },
   {
     id: "col3",
@@ -19,7 +19,7 @@ const REQUEST_HEADER = [
     disablePadding: false,
     label: "Employee Name",
     // filter: "select",
-    width: 100,
+    width: 120,
   },
   {
     id: "col4",
@@ -34,14 +34,14 @@ const REQUEST_HEADER = [
     disablePadding: false,
     label: "Percentage",
     // filter: "select",
-    width: 100,
+    width: 120,
   },
   {
     id: "col6",
     nummeric: false,
     disablePadding: false,
     label: "Experience",
-    width: 100,
+    width: 120,
   },
   {
     id: "col7",

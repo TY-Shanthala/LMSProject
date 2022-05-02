@@ -45,8 +45,10 @@ function LayoutComponent() {
               <Breadcrumb.Item>Batch</Breadcrumb.Item>
             ) : activeIndex === "/mentor" ? (
               <Breadcrumb.Item>Mentor</Breadcrumb.Item>
-            ) : (
+            ) : activeIndex === "/request" ? (
               <Breadcrumb.Item>Request</Breadcrumb.Item>
+            ) : (
+              <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
             )}
           </Breadcrumb>
           <Content

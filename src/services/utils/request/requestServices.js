@@ -1,4 +1,4 @@
-import serviceUtil from "../Index";
+import serviceUtil from "../../index";
 
 const requestGetAll = () => {
   return serviceUtil
