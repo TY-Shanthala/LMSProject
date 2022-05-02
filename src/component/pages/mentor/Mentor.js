@@ -8,8 +8,6 @@ import { Input } from "antd";
 // import { UserOutlined } from "@ant-design/icons";
 import { SearchOutlined } from "@mui/icons-material";
 import TableComponent from "../../molicules/TableComponent";
-import BatchModal from "../../forms/BatchModal";
-import { batchSubmit } from "../../../services/utils/batch/BarchServices";
 // import batchGetAll from "../../../services/util/batch/BatchServices";
 import CONSTANTS from "../../constents/Index";
 import AdminMentorModel from "../../forms/login/adminMentorModel/AdminMentorModel";
