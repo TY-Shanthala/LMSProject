@@ -17,7 +17,7 @@ function SimpleDropdown() {
   return (
     <div>
       <AutoComplete
-        dropdownStyle={{ zindex: "5000px", opacity: 5 }}
+        dropdownStyle={{ opacity: 5, zIndex: 1000000 }}
         suffixIcon={<KeyboardArrowDownIcon />}
         style={{
           width: "100%",

@@ -27,6 +27,7 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SortIcon from "@mui/icons-material/Sort";
 import { Autocomplete, TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
+import ButtonComponent from "../atom/ButtonComponent";
 
 const useStyles = makeStyles({
   tableHeadBg: {
@@ -405,6 +406,7 @@ export default function TableComponent({
   onMinusIndexClick = () => {},
   previewMenuName = "",
   previewMenuHidden = false,
+  showEditAndDelete = true,
 }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("col1");
@@ -594,7 +596,8 @@ export default function TableComponent({
                       sx={{ borderBottom: 0, pl: 0 }}
                       disabled={checked}
                     >
-                      {hoverRow === index && (
+                      {/* {hoverRow === index && ( */}
+                      {showEditAndDelete ? (
                         <>
                           <IconButton
                             sx={{ mr: 2, p: 0 }}
@@ -630,7 +633,18 @@ export default function TableComponent({
                             </Tooltip>
                           </IconButton>
                         </>
+                      ) : (
+                        <>
+                          <ButtonComponent
+                            size="small"
+                            variant="outlined"
+                            style={{ color: "red" }}
+                            label="Approve"
+                          />
+                          <ButtonComponent />
+                        </>
                       )}
+                      {/* )} */}
                     </TableCell>
                   </TableRow>
                 );

@@ -1,4 +1,4 @@
-import { axiosInstance } from "../../axiosConfig";
+import { axiosInstance } from "../axiosConfig";
 
 const get = (url) => {
   return axiosInstance.get(url);
