@@ -2,6 +2,7 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import InputComponent from "../../../atom/InputComponent";
 import ModalComponent from "../../../molicules/ModalComponent";
+import MultiSelectDropdown from "../../../atom/MultiSelectDropdown";
 
 function AdminMentorModel({ setOpenBatch, getTableData }) {
   const [defaultFormData, setDefaultFormData] = useState({
@@ -89,18 +90,7 @@ function AdminMentorModel({ setOpenBatch, getTableData }) {
 
           <div className="mb-0">
             <p className="mb-0 txt-gray">Skills</p>
-            {/* <MultipleSelectCheckmarks modalWidth="100%" /> */}
-            <InputComponent
-              value={defaultFormData.skills}
-              onChange={(e) => {
-                let array = [];
-                array.push(e.target.value);
-                setDefaultFormData({
-                  ...defaultFormData,
-                  skills: array,
-                });
-              }}
-            />
+            <MultiSelectDropdown modalWidth="100%" />
           </div>
         </Box>
       </ModalComponent>

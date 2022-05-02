@@ -9,7 +9,7 @@ import { Input } from "antd";
 import { SearchOutlined } from "@mui/icons-material";
 import TableComponent from "../../molicules/TableComponent";
 import BatchModal from "../../forms/BatchModal";
-import { batchGetAll } from "../../../services/util/batch/BatchServices";
+import { batchSubmit } from "../../../services/utils/batch/BarchServices";
 // import batchGetAll from "../../../services/util/batch/BatchServices";
 import CONSTANTS from "../../constents/Index";
 import AdminMentorModel from "../../forms/login/adminMentorModel/AdminMentorModel";
@@ -19,30 +19,30 @@ function AdminMentor() {
   const [batchData, setBatchData] = useState([]);
   const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    getTableData();
-  }, []);
+  // useEffect(() => {
+  //   getTableData();
+  // }, []);
 
-  const getTableData = async () => {
-    const { data, errRes } = await batchGetAll();
-    setBatchData(data.data);
-    let arrayOfRows = [];
-    data && console.log(data);
-    data.data.map((item, index) => {
-      console.log(data);
-      arrayOfRows.push({
-        col1: index + 1,
-        col2: item.number,
-        col3: item.batchName,
-        col4: item.mentor.mentorName,
-        // col5: null,
-        col6: item.startDate,
-        col7: item.endDate,
-        col8: item.status,
-      });
-    });
-    setRows(arrayOfRows);
-  };
+  // const getTableData = async () => {
+  //   const { data, errRes } = await batchGetAll();
+  //   setBatchData(data.data);
+  //   let arrayOfRows = [];
+  //   data && console.log(data);
+  //   data.data.map((item, index) => {
+  //     console.log(data);
+  //     arrayOfRows.push({
+  //       col1: index + 1,
+  //       col2: item.number,
+  //       col3: item.batchName,
+  //       col4: item.mentor.mentorName,
+  //       // col5: null,
+  //       col6: item.startDate,
+  //       col7: item.endDate,
+  //       col8: item.status,
+  //     });
+  //   });
+  //   setRows(arrayOfRows);
+  // };
 
   return (
     <div>
@@ -86,7 +86,7 @@ function AdminMentor() {
       </div>
       {openBatch && (
         <AdminMentorModel
-          getTableData={getTableData}
+          // getTableData={getTableData}
           openBatch={openBatch}
           setOpenBatch={setOpenBatch}
         />
