@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Development URL
-const baseURL = "http://10.10.20.126/";
+const baseURL = "http://169.254.197.78:9090";
 
 const axiosInstance = axios.create({ baseURL });
 axiosInstance.interceptors.request.use((config) => {

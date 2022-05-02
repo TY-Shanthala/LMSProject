@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import { Select } from "antd";
 
@@ -8,15 +8,18 @@ const { Option } = Select;
 //   console.log(`selected ${value}`);
 // }
 
-function MultiSelectDropdown({ value = "", label = "", onChange = () => {} }) {
-  const options = [
-    "JFSR",
-    "JFSA",
-    "React",
-    "Angular",
-    "Java + Spring Boot",
-    "Node & Express JS",
-  ];
+function MultiSelectDropdown({
+  value = [],
+  label = "",
+  onChange = () => {},
+  options = [],
+}) {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    setState(options);
+  }, [options]);
+
   return (
     <div>
       <Select
@@ -25,11 +28,12 @@ function MultiSelectDropdown({ value = "", label = "", onChange = () => {} }) {
         onChange={onChange}
         optionLabelProp="label"
         dropdownStyle={{ zIndex: 100000 }}
+        value={value}
       >
-        {options.map((value) => {
+        {state.map((val) => {
           return (
-            <Option value={value} label={label}>
-              <div className="demo-option-label-item">{value}</div>
+            <Option value={val.value} label={val.value} title={val.id}>
+              <div className="demo-option-label-item">{val.value}</div>
             </Option>
           );
         })}

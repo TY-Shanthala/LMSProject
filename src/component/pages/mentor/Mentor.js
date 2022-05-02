@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 // import SearchIcon from "@mui/icons-material/Search";
 import ButtonComponent from "../../atom/ButtonComponent";
-import { Toolbar, Typography } from "@mui/material";
+import { Chip, Toolbar, Typography } from "@mui/material";
 import "../../../style/button.scss";
 import { Input } from "antd";
 // import { UserOutlined } from "@ant-design/icons";
@@ -11,36 +11,40 @@ import TableComponent from "../../molicules/TableComponent";
 // import batchGetAll from "../../../services/util/batch/BatchServices";
 import CONSTANTS from "../../constents/Index";
 import AdminMentorModel from "../../forms/login/adminMentorModel/AdminMentorModel";
+import { adminMentorGetAll } from "../../../services/utils/admin-mentor/AdminMentorServices";
 
 function AdminMentor() {
-  const [openBatch, setOpenBatch] = useState(false);
-  const [batchData, setBatchData] = useState([]);
+  const [openMentor, setOpenMentor] = useState(false);
+  const [mentorData, setMentorData] = useState([]);
   const [rows, setRows] = useState([]);
 
-  // useEffect(() => {
-  //   getTableData();
-  // }, []);
+  useEffect(() => {
+    getTableData();
+  }, []);
 
-  // const getTableData = async () => {
-  //   const { data, errRes } = await batchGetAll();
-  //   setBatchData(data.data);
-  //   let arrayOfRows = [];
-  //   data && console.log(data);
-  //   data.data.map((item, index) => {
-  //     console.log(data);
-  //     arrayOfRows.push({
-  //       col1: index + 1,
-  //       col2: item.number,
-  //       col3: item.batchName,
-  //       col4: item.mentor.mentorName,
-  //       // col5: null,
-  //       col6: item.startDate,
-  //       col7: item.endDate,
-  //       col8: item.status,
-  //     });
-  //   });
-  //   setRows(arrayOfRows);
-  // };
+  const getTableData = async () => {
+    const { data, errRes } = await adminMentorGetAll();
+    setMentorData(data.data);
+    let arrayOfRows = [];
+    data && console.log(data);
+    data.data.map((item, index) => {
+      console.log(data);
+      arrayOfRows.push({
+        col1: item.id,
+        col2: item.mentorName,
+        col3: item.empId,
+        col4: item.email,
+        col5: item.technologies.map((ele, index) => (
+          <Chip
+            label={ele.tech}
+            variant="outlined"
+            sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
+          />
+        )),
+      });
+    });
+    setRows(arrayOfRows);
+  };
 
   return (
     <div>
@@ -67,7 +71,7 @@ function AdminMentor() {
             fullwidth
             size="small"
             onClick={() => {
-              setOpenBatch(true);
+              setOpenMentor(true);
             }}
             showIcon={true}
             iconOrintation="start"
@@ -76,17 +80,16 @@ function AdminMentor() {
         </Box>
       </Toolbar>
       <div classNamw="m-2">
-        {console.log(CONSTANTS.BATCH_HEADER, "CONSTANTS.BATCH_HEADER")}
         <TableComponent
           tablerow={rows}
           headCells={CONSTANTS.ADMIN_MENTOR_HEADER}
         />
       </div>
-      {openBatch && (
+      {openMentor && (
         <AdminMentorModel
-          // getTableData={getTableData}
-          openBatch={openBatch}
-          setOpenBatch={setOpenBatch}
+          getTableData={getTableData}
+          openMentor={openMentor}
+          setOpenMentor={setOpenMentor}
         />
       )}
     </div>

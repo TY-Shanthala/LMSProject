@@ -69,4 +69,4 @@ function Request() {
   );
 }
 
-export default Batch;
+export default Request;

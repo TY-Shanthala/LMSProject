@@ -4,5 +4,17 @@ const get = (url) => {
   return axiosInstance.get(url);
 };
 
-const serviceUtil = { get };
+const post = (url, payload) => {
+  return axiosInstance.post(url, payload);
+};
+
+const put = (url, payload) => {
+  return axiosInstance.post(url, payload);
+};
+
+const deleteAll = (url, payload) => {
+  return axiosInstance.post(url, { data: payload });
+};
+
+const serviceUtil = { get, post, put, deleteAll };
 export default serviceUtil;

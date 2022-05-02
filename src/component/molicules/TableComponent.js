@@ -554,9 +554,9 @@ export default function TableComponent({
                     </TableCell>
                     {Object.entries(row).map(([_, ele], i) => {
                       const type = ["string", "number", "boolean"];
-                      if (!type.includes(typeof ele)) {
-                        checked = ele.props.checked;
-                      }
+                      // if (!type.includes(typeof ele)) {
+                      //   checked = ele.props.checked;
+                      // }
                       return (
                         <TableCell
                           key={i}
