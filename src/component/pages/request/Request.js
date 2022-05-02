@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
-import ButtonComponent from "../../atom/ButtonComponent";
 import { Chip, Toolbar, Typography } from "@mui/material";
 import "../../../style/button.scss";
 import { Input } from "antd";
@@ -8,10 +7,7 @@ import { SearchOutlined } from "@mui/icons-material";
 import TableComponent from "../../molicules/TableComponent";
 import BatchModal from "../../forms/BatchModal";
 import CONSTANTS from "../../constents/Index";
-import {
-  batchGetAll,
-  batchDelete,
-} from "../../../services/utils/batch/BarchServices";
+import { requestGetAll } from "../../../services/utils/request/requestServices";
 
 function Request() {
   const [rows, setRows] = useState([]);
@@ -22,7 +18,7 @@ function Request() {
   }, []);
 
   const getTableData = async () => {
-    const { data, errRes } = await batchGetAll();
+    const { data, errRes } = await requestGetAll();
     setRequestData(data.data);
     let arrayOfRows = [];
     data &&
@@ -52,7 +48,7 @@ function Request() {
         className="row"
       >
         <Box className="col-8">
-          <Typography color={"#FAA81D"}>Batch list</Typography>
+          <Typography color={"#FAA81D"}>Request list</Typography>
         </Box>
         <Box className="col-4">
           <Input
@@ -69,4 +65,4 @@ function Request() {
   );
 }
 
-export default Batch;
+export default Request;

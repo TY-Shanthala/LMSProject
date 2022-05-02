@@ -7,10 +7,12 @@ function TextAreaComponent({
   error = false,
   onBlur = () => {},
   value = "",
+  style = {},
 }) {
   return (
     <div>
       <textarea
+        style={style}
         onChange={onChange}
         className={`${
           error ? "text_area_error" : "text_area_style"
