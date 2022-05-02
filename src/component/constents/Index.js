@@ -1,8 +1,8 @@
 import BATCH_HEADER from "./batch/BatchHeader";
-import REQUEST_HEADER from "./request/RequestHeader";
+import ADMIN_MENTOR_HEADER from "./adminMentor/AdminMentorHeader";
 
 const CONSTANTS = {
   BATCH_HEADER,
-  REQUEST_HEADER,
+  ADMIN_MENTOR_HEADER,
 };
 export default CONSTANTS;

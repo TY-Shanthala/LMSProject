@@ -47,6 +47,7 @@ function BatchModal({ setOpenBatch, getTableData }) {
       <ModalComponent
         onSubmitBtnClick={handleSubmit}
         modalWidth={"450px"}
+        submitBtnText="Create"
         modalTitle={"Add new batch"}
         showPreviousBtn={false}
         onCloseIconClick={() => setOpenBatch(false)}
