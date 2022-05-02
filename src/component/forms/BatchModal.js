@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { batchSubmit } from "../../services/util/batch/BatchServices";
+import { batchSubmit } from "../../services/utils/batch/BarchServices";
 import DatePickerComponent from "../atom/DatePickerComponent";
 import InputComponent from "../atom/InputComponent";
 import MultipleSelectCheckmarks from "../atom/MultiSelectDropdown";
