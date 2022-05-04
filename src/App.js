@@ -6,6 +6,7 @@ import "./style/color.scss";
 import Login from "./component/pages/login/Login";
 import TextAreaComponent from "./component/atom/TextAreaComponent";
 import ProtectedRoute from "./component/organism/ProtectedRoute";
+import EmployeeLayout from "./component/pages/employee/EmployeeLayout";
 
 function App() {
   return (
@@ -24,9 +25,18 @@ function App() {
       {/* </BrowserRouter>
       </div>  */}
 
+      {/* <div className="m-5" style={{ width: "30%" }}> */}
       <BrowserRouter>
-        <LayoutComponent />
+        <EmployeeLayout />
       </BrowserRouter>
+<<<<<<< HEAD
+=======
+      {/* </div> */}
+      {/* <BrowserRouter>
+        <LayoutComponent />
+      </BrowserRouter> */}
+      {/* <Login /> */}
+>>>>>>> e1ca9f5ffbd7d133738814fcfaeb1728fb7a42fb
     </div>
   );
 }
