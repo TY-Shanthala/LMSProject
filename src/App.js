@@ -11,7 +11,7 @@ import EmployeeLayout from "./component/pages/employee/EmployeeLayout";
 function App() {
   return (
     <div>
-      {/* <div className="w-100">
+      <div className="w-100">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
@@ -19,24 +19,22 @@ function App() {
               <Route path="/*" />
             </Route>
           </Routes>
-
-          {/* <LayoutComponent /> */}
+        </BrowserRouter>
+      </div>{" "}
+      {/* <LayoutComponent /> */}
       {/* <DetailsModal /> */}
       {/* </BrowserRouter>
-      </div>  */}
+      </div> 
 
       {/* <div className="m-5" style={{ width: "30%" }}> */}
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <EmployeeLayout />
-      </BrowserRouter>
-<<<<<<< HEAD
-=======
+      </BrowserRouter> */}
       {/* </div> */}
       {/* <BrowserRouter>
         <LayoutComponent />
       </BrowserRouter> */}
       {/* <Login /> */}
->>>>>>> e1ca9f5ffbd7d133738814fcfaeb1728fb7a42fb
     </div>
   );
 }

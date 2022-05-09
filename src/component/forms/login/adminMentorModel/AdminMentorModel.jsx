@@ -6,31 +6,31 @@ import MultiSelectDropdown from "../../../atom/MultiSelectDropdown";
 import { adminMentorSubmit } from "../../../../services/utils/admin-mentor/AdminMentorServices";
 import { categoryGet } from "../../../../services/utils/commonApi";
 
-function AdminMentorModel({ setOpenMentor, getTableData }) {
-  const [defaultFormData, setDefaultFormData] = useState({
-    mentorName: "",
-    employeeId: "",
-    email: "",
-    skills: [],
-    skillsId: [],
-  });
-
+function AdminMentorModel({
+  setOpenMentor,
+  getTableData,
+  defaultFormData,
+  setDefaultFormData,
+}) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     getOptions();
+    console.log("first", options);
   }, []);
 
   const getOptions = async () => {
     const { data, errRes } = await categoryGet();
+    console.log(data.data, "data");
     if (data.data) {
       const tempOption = [];
-      data.data.map((item) => {
+      data.data.map((item, index) => {
         tempOption.push({
-          value: item.tech,
-          id: item.id,
+          value: item.sName,
+          id: item.index,
         });
       });
+
       setOptions(tempOption);
     }
   };
@@ -38,10 +38,10 @@ function AdminMentorModel({ setOpenMentor, getTableData }) {
   const modalValue = "add";
   const handleSubmit = async () => {
     const payload = {
-      name: defaultFormData.mentorName,
+      mentorName: defaultFormData.mentorName,
       empId: defaultFormData.employeeId,
       emailId: defaultFormData.email,
-      techId: defaultFormData.skillsId,
+      skills: defaultFormData.skills,
     };
     const { data, errRes } =
       modalValue === "add"
@@ -55,7 +55,9 @@ function AdminMentorModel({ setOpenMentor, getTableData }) {
     } else {
       console.log("Something went wrong");
     }
+    setOpenMentor(false);
   };
+  console.log(defaultFormData.skills);
 
   return (
     <div>
@@ -66,6 +68,7 @@ function AdminMentorModel({ setOpenMentor, getTableData }) {
         modalTitle={"Add new mentor"}
         showPreviousBtn={false}
         onCloseIconClick={() => setOpenMentor(false)}
+        onC
       >
         <Box className="p-5 pt-4 overflowY-scroll h-550">
           <p className="mb-0 txt-gray">Mentor Name</p>
@@ -119,7 +122,7 @@ function AdminMentorModel({ setOpenMentor, getTableData }) {
                 const tempId = [];
                 const tempSkill = [];
                 val.map((item) => {
-                  tempId.push(item.title.toString());
+                  // tempId.push(item.sName.toString());
                   tempSkill.push(item.value);
                 });
                 setDefaultFormData({

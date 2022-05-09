@@ -21,6 +21,15 @@ function Batch() {
   const [rows, setRows] = useState([]);
   const [selected, setSelected] = useState([]);
   const [deleteData, setDeleteData] = useState("");
+  const [defaultFormData, setDefaultFormData] = useState({
+    name: "",
+    mentorName: "",
+    technologies: "",
+    startDate: "",
+    startDateString: "",
+    endDate: "",
+    endDateString: "",
+  });
 
   useEffect(() => {
     getTableData();
@@ -35,11 +44,17 @@ function Batch() {
         console.log(data);
         arrayOfRows.push({
           col1: index + 1,
-          col2: item.number,
+          // col1: item.number,
+          col2: item.batchId,
           col3: item.batchName,
-          col4: item.mentor.mentorName,
+          col4: item.mentorName,
           col5: item.technologies.map((ele) => (
-            <Chip label={ele} variant="outlined" color="primary" />
+            <Chip
+              label={ele.technologyName}
+              variant="outlined"
+              color="primary"
+              sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
+            />
           )),
           col6: item.startDate,
           col7: item.endDate,
@@ -49,46 +64,18 @@ function Batch() {
     setRows(arrayOfRows);
   };
 
-  const handleDeleteIconClick = (id) => {
-    if (id) {
-      batchData &&
-        batchData.map((item, index) => {
-          if (index + 1 === id) {
-            setDeleteData(item);
-          }
-        });
-    }
-  };
-
-  const handleDeleteClick = async () => {
-    let payload;
-    if (selected.length > 0) {
-      const tempData = [];
-      selected &&
-        selected.map((item) => {
-          batchData &&
-            batchData.map((ele, index) => {
-              if (index + 1 === item) {
-                tempData.push(ele);
-              }
-            });
-        });
-      const tempBlogId = [];
-      tempData &&
-        tempData.map((item) => {
-          tempBlogId.push(item.blog_id);
-        });
-      payload = { blog_id: tempBlogId };
-    } else {
-      payload = { blog_id: deleteData.blog_id };
-    }
-    const { data, errRes } = await batchDelete(payload);
+  const deleteItem = async (id) => {
+    let batchId = "";
+    batchData.map((item, index) => {
+      if (index + 1 === id) {
+        batchId = item.batchId;
+      }
+    });
+    const { data, errRes } = await batchDelete(batchId);
+    console.log(data);
+    console.log(errRes);
     if (data) {
-      await getTableData();
-    } else if (errRes) {
-      console.log(errRes.message);
-    } else {
-      console.log("Something went wrong");
+      getTableData();
     }
   };
 
@@ -126,13 +113,19 @@ function Batch() {
         </Box>
       </Toolbar>
       <div classNamw="m-2">
-        <TableComponent tablerow={rows} headCells={CONSTANTS.BATCH_HEADER} />
+        <TableComponent
+          tablerow={rows}
+          headCells={CONSTANTS.BATCH_HEADER}
+          deleteIconClick={(id) => deleteItem(id)}
+        />
       </div>
       {openBatch && (
         <BatchModal
           getTableData={getTableData}
           openBatch={openBatch}
           setOpenBatch={setOpenBatch}
+          defaultFormData={defaultFormData}
+          setDefaultFormData={setDefaultFormData}
         />
       )}
     </div>

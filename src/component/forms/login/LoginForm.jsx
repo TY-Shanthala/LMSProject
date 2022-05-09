@@ -99,13 +99,14 @@ function LoginForm() {
 
     let { dataRes, errRes } = await login(payload);
 
-    console.log(dataRes);
+    console.log(dataRes.data.data.role);
 
     if (dataRes) {
       // dispatch(userAction(dataRes.header.token));
       let data = dataRes.data.data.token;
       console.log(data);
       localStorage.setItem("token", data);
+      localStorage.setItem("role", dataRes.data.data.role);
       history("/dashboard");
       setDefaultFormData({ ...defaultFormData, empId: "" });
       setDefaultFormData({ ...defaultFormData, password: "" });

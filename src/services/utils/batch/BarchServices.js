@@ -2,7 +2,7 @@ import serviceUtil from "../../index";
 
 const batchGetAll = () => {
   return serviceUtil
-    .get("lms/v1/admin/batch")
+    .get("lms/allbatches")
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -24,12 +24,11 @@ const batchSubmit = (payload) => {
       const errRes = err && err.response.data;
       return { errRes };
     });
-  
 };
 
 const batchDelete = (payload) => {
   return serviceUtil
-    .deleteAll("", payload)
+    .deleteAll(`lms/deletebatch?batchId=${payload}`)
     .then((res) => {
       const data = res && res.data;
       return { data };

@@ -13,7 +13,7 @@ const put = (url, payload) => {
 };
 
 const deleteAll = (url, payload) => {
-  return axiosInstance.post(url, { data: payload });
+  return axiosInstance.delete(url, { data: payload });
 };
 
 const serviceUtil = { get, post, put, deleteAll };

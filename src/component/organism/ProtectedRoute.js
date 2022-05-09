@@ -1,11 +1,17 @@
 import { Navigate } from "react-router-dom";
+import LayoutComponent from "./LayoutComponent";
 
-const ProtectedRoute = ({ user, children }) => {
+const ProtectedRoute = ({ children }) => {
+  const user = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  console.log(role);
   if (!user) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
+  } else if (role === "admin") {
+    return <LayoutComponent />;
+  } else {
+    return <p>page not found</p>;
   }
-  console.log(children);
-  return children;
 };
 
 export default ProtectedRoute;
