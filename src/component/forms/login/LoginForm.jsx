@@ -1,200 +1,228 @@
-import React, { useState } from "react";
+import InputComponent from "../../atom/InputComponent";
+import ButtonComponent from "../../atom/ButtonComponent";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  IconButton,
+  Input,
+  InputAdornment,
+} from "@mui/material";
 
-const LoginForm = () => {
-  const [userDetails, setuserDetails] = useState({
-    email: "",
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../../services/utils/login/Login";
+
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+function LoginForm() {
+  const [defaultFormData, setDefaultFormData] = useState({
+    empId: "",
     password: "",
+    showPassword: "",
+    showPassword: false,
   });
-  const [emailError, setemailError] = useState(false);
-  const [emailErrorEmpty, setemailErrorEmpty] = useState(false);
+  const [error, setError] = useState({
+    empId: false,
+    validempId: false,
+    password: false,
+  });
+  // const jwt = useSelector((state)=> state.product)
 
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorEmpty, setPasswordErrorEmpty] = useState(false);
+  const [empIdErr, setempIdErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+  const [click, setClick] = useState({
+    clickMail: false,
+    clickPass: false,
+  });
+  const history = useNavigate();
 
-  const login = (event) => {
+  let { clickMail, clickPass } = click;
+  const handleChange = (prop) => (event) => {
+    setDefaultFormData({ ...defaultFormData, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setDefaultFormData({
+      ...defaultFormData,
+      showPassword: !defaultFormData.showPassword,
+    });
+  };
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
-    if (userDetails.password === "") {
-      setPasswordErrorEmpty(true);
-    }
-    if (userDetails.email === "") {
-      setemailErrorEmpty(true);
-    }
-    let mail = event.target.value;
-    let pass = event.target.value;
+  };
 
-    const filter =
-      /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,25})$/;
-
-    var validPassReg =
-      /(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/;
-
+  let errorObj = {
+    empId: false,
+    password: false,
+    validempId: false,
+  };
+  const handleError = () => {
+    const { empId, password } = defaultFormData;
     if (
-      userDetails.email &&
-      userDetails.password &&
-      !passwordError &&
-      !emailError
+      empId === "" ||
+      !empId ||
+      empId.charAt(0) === " " ||
+      empId.charAt(empId.length - 1) === " "
     ) {
+      errorObj.empId = true;
+    }
+    if (
+      password === "" ||
+      !password ||
+      password.charAt(0) === " " ||
+      password.charAt(password.length - 1) === " "
+    ) {
+      errorObj.password = true;
+      setPasswordErr("Password required");
+    }
+    return errorObj;
+  };
+
+  const handleSave = async () => {
+    // const errorObj = handleError();
+    // setError(errorObj);
+    // let validempId = true;
+    // errorObj &&
+    //   Object.keys(errorObj).length > 0 &&
+    //   Object.entries(errorObj).forEach(([_, value]) => {
+    //     if (value) {
+    //       validempId = false;
+    //       return false;
+    //     }
+    //   });
+
+    const payload = {
+      empId: defaultFormData.empId,
+      password: defaultFormData.password,
+    };
+
+    let { dataRes, errRes } = await login(payload);
+
+    console.log(dataRes.data.data.role);
+
+    if (dataRes) {
+      // dispatch(userAction(dataRes.header.token));
+      let data = dataRes.data.data.token;
+      console.log(data);
+      localStorage.setItem("token", data);
+      localStorage.setItem("role", dataRes.data.data.role);
+      history("/dashboard");
+      setDefaultFormData({ ...defaultFormData, empId: "" });
+      setDefaultFormData({ ...defaultFormData, password: "" });
     } else {
-      console.log("not valis");
+      if (errRes) {
+        errorObj.password = true;
+        errorObj.validempId = true;
+        setempIdErr(errRes.message);
+        setPasswordErr(errRes.message);
+      }
     }
   };
 
-  const handleChange = (event) => {
-    console.log(event.target.name);
-    const userDetailsCopy = { ...userDetails };
-    console.log(userDetailsCopy, "userDetailsCopy");
-
-    userDetailsCopy[event.target.name] = event.target.value;
-    setuserDetails(userDetailsCopy);
-  };
   return (
-    <div>
-      <form className="box-2" onSubmit={login}>
-        <div
-          className="login-form-container"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
+    <div className="d-flex flex-column justify-content-center h-100 px-md-5 px-sm-5">
+      <h3 className="fw-600 mb-4 mt-4 m-5 txt-yellow">Login</h3>
+      <div className="mb-4 w-60">
+        <p className={`mb-0 ${clickMail ? "text-blue" : "text-normal"}`}>
+          <span className="text-danger">*</span>empId
+        </p>
+        <InputComponent
+          placeholder="Enter your empId"
+          error={error.empId || error.validempId}
+          value={defaultFormData.empId}
+          fullWidth={true}
+          name="empId"
+          onClick={() => {
+            setClick({ ...click, clickMail: true });
+          }}
+          onBlur={() => {
+            setClick({ ...click, clickMail: false });
+          }}
+          onChange={(e) => {
+            setDefaultFormData({ ...defaultFormData, empId: e.target.value });
+          }}
+        />
+        {error.empId ? (
+          <p className="mb-0 fs-12  w-75" style={{ color: "red" }}>
+            empId is required
+          </p>
+        ) : error.validempId ? (
+          <span className="mb-0 fs-12  w-75" style={{ color: "red" }}>
+            {empIdErr}
+          </span>
+        ) : (
+          ""
+        )}
+      </div>
+      <div>
+        <p className={`mb-0 ${clickPass ? "text-blue" : "text-normal"}`}>
+          <span className="text-danger">*</span>Password
+        </p>
+        <FormControl
+          value={defaultFormData.password}
+          variant="standard"
+          className="w-60"
+          name="password"
+          onClick={() => {
+            setClick({ ...click, clickPass: true });
+          }}
+          onBlur={() => {
+            setClick({ ...click, clickPass: false });
           }}
         >
-          <h1 style={{ color: "#FFAA17" }}>Login </h1>
-          <div
-            style={{
-              width: 250,
-              display: "flex",
-              flexDirection: "column",
-              marginBottom: 30,
-            }}
-          >
-            <input
-              className="input-field"
-              style={{}}
-              value={userDetails.email}
-              type="type"
-              name="email"
-              onChange={(event) => {
-                handleChange(event);
-                let mail = event.target.value;
-                if (mail) {
-                  setemailErrorEmpty(false);
-                }
-
-                const filter =
-                  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,25})$/;
-
-                if (filter.test(mail)) {
-                  setemailError(false);
-                } else {
-                  setemailError(true);
-                }
-              }}
-              placeholder="Enter mail"
-            />{" "}
-            {emailError && userDetails.email ? (
-              <p
-                style={{
-                  color: "red",
-                  fontSize: 12,
-                  padding: 0,
-                  margin: 0,
-                  textAlign: "left",
-                  marginLeft: 5,
-                }}
-              >
-                mail is incorrect
-              </p>
-            ) : (
-              emailErrorEmpty && (
-                <p
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    padding: 0,
-                    margin: 0,
-                    textAlign: "left",
-                    marginLeft: 5,
-                  }}
+          <InputComponent
+            placeholder="Enter your password"
+            error={error.password}
+            id="standard-adornment-password"
+            type={defaultFormData.showPassword ? "text" : "password"}
+            value={defaultFormData.password}
+            onChange={handleChange("password")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
                 >
-                  mail can't be empty
-                </p>
-              )
-            )}
-          </div>
-          <div
-            style={{
-              width: 250,
-              display: "flex",
-              marginBottom: 30,
-              flexDirection: "column",
-            }}
-          >
-            <input
-              className="input-field"
-              value={userDetails.password}
-              name="password"
-              type="password"
-              onChange={(event) => {
-                let pass = event.target.value;
-                handleChange(event);
-                if (pass) {
-                  setPasswordErrorEmpty(false);
-                }
-                var validPassReg =
-                  /(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/;
+                  {defaultFormData.showPassword ? (
+                    <Visibility />
+                  ) : (
+                    <VisibilityOff />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        {
+          error.password && (
+            <p className="mb-0 fs-12  w-75 " style={{ color: "red" }}>
+              {/* Password is required */}
+              {passwordErr}
+            </p>
+          )
+          // : !passwordValid ? (
+          //   <span className="mb-0 fs-12  w-75" style={{ color: "red" }}>
+          //     {passwordErr}
+          //   </span>
+          // ) : null
+        }
+      </div>
 
-                if (!validPassReg.test(pass)) {
-                  setPasswordError(true);
-                } else {
-                  setPasswordError(false);
-                }
-              }}
-              placeholder="password"
-            />
-            {passwordError && userDetails.password ? (
-              <p
-                style={{
-                  color: "red",
-                  fontSize: 12,
-                  padding: 0,
-                  margin: 0,
-                  textAlign: "left",
-                  marginLeft: 5,
-                }}
-              >
-                password is incorrect
-              </p>
-            ) : (
-              passwordErrorEmpty && (
-                <p
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    padding: 0,
-                    margin: 0,
-                    textAlign: "left",
-                    marginLeft: 5,
-                  }}
-                >
-                  password can't be empty
-                </p>
-              )
-            )}{" "}
-          </div>
-
-          <div className="buttons">
-            <button type="submit" className="login-button">
-              Login
-            </button>
-            <button type="submit" className="cancel-button">
-              cancel
-            </button>
-          </div>
-        </div>
-      </form>
+      <div className="mx-5">
+        <ButtonComponent
+          //  onClick={handlePreview}
+          label="LOGIN"
+          // color="primary"
+          style={{ backgroundColor: "#ffaa17", color: "#ffffff" }}
+          muiProps="w-20 mt-5"
+          variant="contained"
+          onClick={handleSave}
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default LoginForm;

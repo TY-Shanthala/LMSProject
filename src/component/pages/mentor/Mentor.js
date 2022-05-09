@@ -11,12 +11,24 @@ import TableComponent from "../../molicules/TableComponent";
 // import batchGetAll from "../../../services/util/batch/BatchServices";
 import CONSTANTS from "../../constents/Index";
 import AdminMentorModel from "../../forms/login/adminMentorModel/AdminMentorModel";
-import { adminMentorGetAll } from "../../../services/utils/admin-mentor/AdminMentorServices";
+import {
+  adminMentorDelete,
+  adminMentorGetAll,
+} from "../../../services/utils/admin-mentor/AdminMentorServices";
 
 function AdminMentor() {
   const [openMentor, setOpenMentor] = useState(false);
   const [mentorData, setMentorData] = useState([]);
+  const [deleteData, setDeleteData] = useState("");
   const [rows, setRows] = useState([]);
+
+  const [defaultFormData, setDefaultFormData] = useState({
+    mentorName: "",
+    employeeId: "",
+    email: "",
+    skills: [],
+    skillsId: [],
+  });
 
   useEffect(() => {
     getTableData();
@@ -26,24 +38,38 @@ function AdminMentor() {
     const { data, errRes } = await adminMentorGetAll();
     setMentorData(data.data);
     let arrayOfRows = [];
-    data && console.log(data);
-    data.data.map((item, index) => {
-      console.log(data);
-      arrayOfRows.push({
-        col1: item.id,
-        col2: item.mentorName,
-        col3: item.empId,
-        col4: item.email,
-        col5: item.technologies.map((ele, index) => (
-          <Chip
-            label={ele.tech}
-            variant="outlined"
-            sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
-          />
-        )),
+    data &&
+      data.data.map((item, index) => {
+        arrayOfRows.push({
+          col1: index + 1,
+          col2: item.mentorName,
+          col3: item.empId,
+          col4: item.emailId,
+          col5: item.skills.map((ele, index) => (
+            <Chip
+              label={ele.sName}
+              variant="outlined"
+              color="primary"
+              sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
+            />
+          )),
+        });
       });
-    });
     setRows(arrayOfRows);
+  };
+
+  const deleteItem = async (id) => {
+    let empId = "";
+    mentorData.map((item, index) => {
+      if (index + 1 === id) {
+        empId = item.empId;
+      }
+    });
+    const { data, errRes } = await adminMentorDelete(empId);
+    console.log(data);
+    if (data) {
+      getTableData();
+    }
   };
 
   return (
@@ -62,6 +88,7 @@ function AdminMentor() {
             size="default"
             placeholder="Search"
             prefix={<SearchOutlined />}
+            
           />
         </Box>
         <Box className="col-2">
@@ -83,6 +110,7 @@ function AdminMentor() {
         <TableComponent
           tablerow={rows}
           headCells={CONSTANTS.ADMIN_MENTOR_HEADER}
+          deleteIconClick={(id) => deleteItem(id)}
         />
       </div>
       {openMentor && (
@@ -90,6 +118,8 @@ function AdminMentor() {
           getTableData={getTableData}
           openMentor={openMentor}
           setOpenMentor={setOpenMentor}
+          setDefaultFormData={setDefaultFormData}
+          defaultFormData={defaultFormData}
         />
       )}
     </div>

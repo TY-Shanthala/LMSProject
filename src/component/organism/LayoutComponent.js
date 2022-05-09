@@ -9,21 +9,37 @@ import {
 import AddUser from "../../assets/add-user .png";
 import SidebarComponent from "../organism/SideBar";
 import RouterComponent from "../routes/RouterComponent";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import ButtonComponent from "../atom/ButtonComponent";
 const { Header, Content, Sider } = Layout;
 
 function LayoutComponent() {
   const [activeIndex, setActiveIndex] = useState(0);
   const location = useLocation();
+  const history = useNavigate();
+
   useEffect(() => {
     const curPath = window.location.pathname;
     setActiveIndex(curPath);
   }, [location]);
 
+  const handleLogout = () => {
+    localStorage.clear("token");
+    history("/");
+  };
+
   return (
     <Layout className="p-0">
       <Header color="#FFFFFF" className="header">
         <div className="logo" />
+        <div style={{ float: "right" }}>
+          <ButtonComponent
+            label="Logout"
+            onClick={() => {
+              handleLogout();
+            }}
+          />
+        </div>
         <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]} />
       </Header>
       <Layout className="p-0">

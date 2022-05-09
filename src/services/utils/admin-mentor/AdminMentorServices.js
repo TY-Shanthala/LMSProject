@@ -2,7 +2,7 @@ import serviceUtil from "../../index";
 
 const adminMentorGetAll = () => {
   return serviceUtil
-    .get("lms/v1/admin/mentor")
+    .get("lmsuser/mentorslist")
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -15,7 +15,7 @@ const adminMentorGetAll = () => {
 
 const adminMentorSubmit = (payload) => {
   return serviceUtil
-    .post("lms/v1/admin/mentor", payload)
+    .post("lmsuser/mentorregister", payload)
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -28,7 +28,7 @@ const adminMentorSubmit = (payload) => {
 
 const adminMentorDelete = (payload) => {
   return serviceUtil
-    .deleteAll("", payload)
+    .deleteAll(`lmsuser/mentordelete?empId=${payload}`)
     .then((res) => {
       const data = res && res.data;
       return { data };

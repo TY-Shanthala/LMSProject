@@ -7,16 +7,8 @@ import MultipleSelectCheckmarks from "../atom/MultiSelectDropdown";
 import SimpleDropdown from "../atom/SimpleDropdown";
 import ModalComponent from "../molicules/ModalComponent";
 
-function BatchModal({ setOpenBatch, getTableData }) {
-  const [defaultFormData, setDefaultFormData] = useState({
-    name: "",
-    mentorName: "",
-    technologies: "",
-    startDate: "",
-    startDateString: "",
-    endDate: "",
-    endDateString: "",
-  });
+function BatchModal({ setOpenBatch, getTableData,setDefaultFormData,defaultFormData }) {
+
 
   const [error, setError] = useState({
     name: false,

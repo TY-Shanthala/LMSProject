@@ -1,8 +1,8 @@
 import serviceUtil from "../../index";
 
-const categoryGet = (payload) => {
+const categoryGet = () => {
   return serviceUtil
-    .get(`lms/v1/admin/technologies`)
+    .get(`lmsuser/getskills`)
     .then((res) => {
       const data = res && res.data;
       return { data };
