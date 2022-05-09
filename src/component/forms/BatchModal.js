@@ -18,6 +18,16 @@ function BatchModal({ setOpenBatch, getTableData }) {
     endDateString: "",
   });
 
+  const [error, setError] = useState({
+    name: false,
+    mentorName: false,
+    technologies: false,
+    startDate: false,
+    startDateString: false,
+    endDate: false,
+    endDateString: false,
+  });
+
   console.log(defaultFormData.technologies, "defaultFormData.technologies");
 
   const modalValue = "add";
