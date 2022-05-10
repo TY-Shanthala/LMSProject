@@ -29,11 +29,11 @@ function BankDetails() {
           </div>
           <div className="row d-flex justify-content-between">
             <div className="m-2 col-5">
-              <p className="mb-0">Spouse Name</p>
+              <p className="mb-0">Branch</p>
               <SimpleDropdown />
             </div>
             <div className="m-2 col-5">
-              <p className="mb-0">Passport No.</p>
+              <p className="mb-0">State</p>
               <SimpleDropdown />
             </div>
           </div>

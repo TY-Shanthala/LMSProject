@@ -219,7 +219,7 @@ function EnhancedTableHead(props) {
                 padding={headCell.disablePadding ? "none" : "normal"}
                 sortDirection={orderBy === headCell.id ? order : false}
                 style={{ width: headCell.width ? headCell.width : "auto" }}
-                sx={{ borderBottom: 0 }}
+                sx={{ borderBottom: 0, fontWeight: 600 }}
                 className="fs-12 fw-600"
               >
                 {headCell.label}

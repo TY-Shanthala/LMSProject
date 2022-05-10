@@ -54,10 +54,23 @@ function AddressDetails() {
         {defaultFormData.map((item, i, row) => (
           <Accordion defaultExpanded={true}>
             <AccordionSummary
+              onClick={() => {}}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-            ></AccordionSummary>
+            >
+              <Typography
+                style={{
+                  color: "#086288",
+                  fontWeight: "600",
+                  fontFamily: "Open Sans, Semibold",
+                  fontSize: "32px",
+                }}
+              >
+                Address type
+              </Typography>
+            </AccordionSummary>
+
             <AccordionDetails>
               <div className="p-1 m-2 ">
                 <div className="m-3 row d-felx justify-contect-center">
@@ -130,25 +143,24 @@ function AddressDetails() {
                     <SimpleDropdown />
                   </div>
                 </div>
-                <div className="row align-item-right">
+                <div className="w-100 d-flex justify-content-end">
                   {row.length === i + 1 ? (
-                    <IconButton
-                      className="col-12"
-                      size="small"
-                      onClick={handleAddClick}
-                    >
-                      <AddCircleOutlineIcon color="primary" />{" "}
-                      <spam style={{ color: "blue" }}>Add</spam>
-                    </IconButton>
+                    <div>
+                      <IconButton size="small" onClick={handleAddClick}>
+                        <AddCircleOutlineIcon color="primary" />{" "}
+                        <spam style={{ color: "blue" }}>Add</spam>
+                      </IconButton>
+                    </div>
                   ) : (
-                    <IconButton
-                      className="col-12"
-                      size="small"
-                      onClick={() => handleDeleteClick(i)}
-                    >
-                      <DeleteIcon color="primary" />{" "}
-                      <spam style={{ color: "blue" }}>Delete</spam>
-                    </IconButton>
+                    <div>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleDeleteClick(i)}
+                      >
+                        <DeleteIcon color="primary" />{" "}
+                        <spam style={{ color: "blue" }}>Delete</spam>
+                      </IconButton>
+                    </div>
                   )}
                 </div>
               </div>

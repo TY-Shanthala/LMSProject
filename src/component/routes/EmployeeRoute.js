@@ -8,38 +8,38 @@ import Experience from "../pages/employee/experience/Experience";
 import SecondaryInfo from "../pages/employee/secondaryInfo/SecondaryInfo";
 import TechnicalSkills from "../pages/employee/technicalSkills/TechnicalSkills";
 
-const EmployeeRoute = () => {
+const EmployeeRoute = ({ empPayload, setEmpPayload }) => {
   const routesObj = [
     {
-      element: <PrimaryEmployee />,
+      element: <PrimaryEmployee empPayload={empPayload} />,
       path: "/primaryInfo",
     },
     {
-      element: <SecondaryInfo />,
+      element: <SecondaryInfo empPayload={empPayload} />,
       path: "/secondaryInfo",
     },
     {
-      element: <EducationDetails />,
+      element: <EducationDetails empPayload={empPayload} />,
       path: "/educationDetails",
     },
     {
-      element: <AddressDetails />,
+      element: <AddressDetails empPayload={empPayload} />,
       path: "/addressDetails",
     },
     {
-      element: <BankDetails />,
+      element: <BankDetails empPayload={empPayload} />,
       path: "/bankDetails",
     },
     {
-      element: <TechnicalSkills />,
+      element: <TechnicalSkills empPayload={empPayload} />,
       path: "/technicalSkills",
     },
     {
-      element: <Experience />,
+      element: <Experience empPayload={empPayload} />,
       path: "/experience",
     },
     {
-      element: <Contact />,
+      element: <Contact empPayload={empPayload} />,
       path: "/contact",
     },
   ];

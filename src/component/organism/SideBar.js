@@ -44,17 +44,6 @@ const SideMenuComponent = () => {
       section: "request",
       child: [],
     },
-    {
-      display: "Dashboard",
-      page: "Dashboard",
-      inActiveIcon: "icon",
-      activeIcon: (
-        <img src={AddUser} style={{ color: "#fff" }} alt="dashboard" />
-      ),
-      to: "/dashboard",
-      section: "dashboard",
-      child: [],
-    },
   ];
 
   return (

@@ -8,11 +8,14 @@ import TextAreaComponent from "./component/atom/TextAreaComponent";
 import ProtectedRoute from "./component/organism/ProtectedRoute";
 import EmployeeLayout from "./component/pages/employee/EmployeeLayout";
 import EducationDetails from "./component/pages/employee/educationDetails/EducationDetails";
+import AdminMentor from "./component/pages/mentor/Mentor";
+import XlDownloadComponent from "./component/atom/XlDownloadComponent";
+import EmployeeLayoutComponent from "./component/organism/EmployeeLayoutComponent";
 
 function App() {
   return (
     <div>
-      <div className="w-100">
+      {/* <div className="w-100">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
@@ -21,20 +24,19 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </div>{" "}
+      </div>{" "} */}
       {/* <LayoutComponent /> */}
       {/* <DetailsModal /> */}
       {/* </BrowserRouter>
       </div> 
 
       {/* <div className="m-5" style={{ width: "30%" }}> */}
-      {/* <BrowserRouter>
-        <EmployeeLayout />
-      </BrowserRouter> */}
       {/* </div> */}
-      {/* <BrowserRouter>
-        <LayoutComponent />
-      </BrowserRouter> */}
+      <BrowserRouter>
+        {/* <LayoutComponent /> */}
+        <EmployeeLayout />
+        {/* <EmployeeLayoutComponent /> */}
+      </BrowserRouter>
       {/* <Login /> */}
     </div>
   );

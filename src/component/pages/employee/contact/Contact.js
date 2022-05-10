@@ -12,6 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "antd/dist/antd.css";
 import { Input, Select, Space, Cascader } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
+import { Option } from "antd/lib/mentions";
 
 function Contact() {
   const [active, setActive] = React.useState(false);
@@ -50,11 +51,16 @@ function Contact() {
             // aria-controls="panel1a-content"
             // id="panel1a-header"
           >
-            {active && (
-              <Typography style={{ color: "#086288" }}>
-                {defaultFormData.educationType}
-              </Typography>
-            )}
+            <Typography
+              style={{
+                color: "#086288",
+                fontWeight: "600",
+                fontFamily: "Open Sans, Semibold",
+                fontSize: "32px",
+              }}
+            >
+              Contact Type
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <div className="p-1 m-2 ">
@@ -65,34 +71,38 @@ function Contact() {
                 </div>
                 <div className="col-5">
                   <p className="mb-0"> Contact Number</p>
-                  <Input
-                    addonBefore={
-                      <Cascader placeholder="cascader" style={{ width: 150 }} />
-                    }
-                    defaultValue="mysite"
-                  />
+                  <Input.Group compact>
+                    <Select defaultValue="+91">
+                      <Option value="">+1</Option>
+                      <Option value="">+91</Option>
+                      <Option value="">+44</Option>
+                    </Select>
+                    <Input
+                      style={{ width: "75%" }}
+                      // defaultValue="input content"
+                    />
+                  </Input.Group>
                 </div>
               </div>
 
-              <div className="row align-item-right">
+              <div className="w-100 d-flex justify-content-end">
                 {row.length === i + 1 ? (
-                  <IconButton
-                    className="col-12"
-                    size="small"
-                    onClick={handleAddClick}
-                  >
-                    <AddCircleOutlineIcon color="primary" />{" "}
-                    <spam style={{ color: "blue" }}>Add</spam>
-                  </IconButton>
+                  <div>
+                    <IconButton size="small" onClick={handleAddClick}>
+                      <AddCircleOutlineIcon color="primary" />{" "}
+                      <spam style={{ color: "blue" }}>Add</spam>
+                    </IconButton>
+                  </div>
                 ) : (
-                  <IconButton
-                    className="col-12"
-                    size="small"
-                    onClick={() => handleDeleteClick(i)}
-                  >
-                    <DeleteIcon color="primary" />{" "}
-                    <spam style={{ color: "blue" }}>Delete</spam>
-                  </IconButton>
+                  <div>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleDeleteClick(i)}
+                    >
+                      <DeleteIcon color="primary" />{" "}
+                      <spam style={{ color: "blue" }}>Delete</spam>
+                    </IconButton>
+                  </div>
                 )}
               </div>
             </div>

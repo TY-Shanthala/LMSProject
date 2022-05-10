@@ -8,6 +8,7 @@ function InputComponent({
   onChange = () => {},
   size = "default",
   style = {},
+  status = "", //error or warning
 }) {
   return (
     <div>
@@ -17,6 +18,7 @@ function InputComponent({
         onChange={onChange}
         size={size}
         style={style}
+        status={status}
       />
     </div>
   );

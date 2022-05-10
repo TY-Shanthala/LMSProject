@@ -117,6 +117,9 @@ function Batch() {
           tablerow={rows}
           headCells={CONSTANTS.BATCH_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
+          editIconClick={(id) => {
+            setOpenBatch(true);
+          }}
         />
       </div>
       {openBatch && (
