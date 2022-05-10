@@ -15,7 +15,7 @@ import ButtonComponent from "../atom/ButtonComponent";
 import { Box } from "@mui/material";
 const { Header, Content, Sider } = Layout;
 
-function LayoutComponent() {
+function EmployeeLayoutComponent() {
   const [activeIndex, setActiveIndex] = useState(0);
   const location = useLocation();
   const history = useNavigate();
@@ -87,7 +87,7 @@ function LayoutComponent() {
               minHeight: 450,
             }}
           >
-            <RouterComponent />
+            {/* <RouterComponent /> */}
           </Content>
         </Layout>
       </Layout>
@@ -95,4 +95,4 @@ function LayoutComponent() {
   );
 }
 
-export default LayoutComponent;
+export default EmployeeLayoutComponent;

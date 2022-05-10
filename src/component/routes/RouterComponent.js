@@ -18,10 +18,10 @@ const RouterComponent = () => {
       element: <Request />,
       path: "/request",
     },
-    {
-      element: <DashBoard />,
-      path: "/dashboard",
-    },
+    // {
+    //   element: <DashBoard />,
+    //   path: "/dashboard",
+    // },
   ];
   const routes = useRoutes([...routesObj]);
   return routes;

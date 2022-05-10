@@ -10,6 +10,16 @@ import ModalComponent from "../molicules/ModalComponent";
 function BatchModal({ setOpenBatch, getTableData,setDefaultFormData,defaultFormData }) {
 
 
+  const [error, setError] = useState({
+    name: false,
+    mentorName: false,
+    technologies: false,
+    startDate: false,
+    startDateString: false,
+    endDate: false,
+    endDateString: false,
+  });
+
   console.log(defaultFormData.technologies, "defaultFormData.technologies");
 
   const modalValue = "add";

@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import RouterComponent from "../../routes/RouterComponent";
 import { useNavigate } from "react-router-dom";
 import EmployeeRoute from "../../routes/EmployeeRoute";
+import EmpSubmitPage from "./submitPage/EmpSubmitPage";
+import { WindowSharp } from "@mui/icons-material";
 
 const steps = [
   { name: "Primary Info", to: "/primaryInfo" },
@@ -23,6 +25,8 @@ const steps = [
 function EmployeeLayout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+  const [empPayload, setEmpPayload] = React.useState("Rohan");
+  const [submitPage, setSubmitPage] = React.useState(false);
   const history = useNavigate();
 
   const totalSteps = () => {
@@ -86,6 +90,10 @@ function EmployeeLayout() {
     setActiveStep(0);
     setCompleted({});
   };
+
+  const handleSubmit = () => {
+    setSubmitPage(true);
+  };
   return (
     <div className="m-5">
       {" "}
@@ -116,21 +124,35 @@ function EmployeeLayout() {
                 Step {activeStep + 1}
               </Typography> */}
               <Box>
-                <EmployeeRoute />
+                <EmployeeRoute
+                  setEmpPayload={setEmpPayload}
+                  empPayload={empPayload}
+                />
               </Box>
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                 <Button
+                  variant="contained"
+                  style={{
+                    background: "#086288",
+                    color: "white",
+                    marginLeft: "150px",
+                  }}
                   color="inherit"
                   disabled={activeStep === 0}
                   onClick={handleBack}
                   sx={{ mr: 1 }}
                 >
-                  Back
+                  Previous
                 </Button>
-                <Box sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleNext} sx={{ mr: 1 }}>
+                <Box className="col-8" />
+                {/* <Button
+                  variant="contained"
+                  style={{ background: "#086288" }}
+                  onClick={handleNext}
+                  sx={{ mr: 1 }}
+                >
                   Next
-                </Button>
+                </Button> */}
                 {activeStep !== steps.length &&
                   (completed[activeStep] ? (
                     <Typography
@@ -140,10 +162,18 @@ function EmployeeLayout() {
                       Step {activeStep + 1} already completed
                     </Typography>
                   ) : (
-                    <Button onClick={handleComplete}>
+                    <Button
+                      variant="contained"
+                      style={{ background: "#086288" }}
+                      onClick={
+                        completedSteps() === totalSteps() - 1
+                          ? handleSubmit
+                          : handleComplete
+                      }
+                    >
                       {completedSteps() === totalSteps() - 1
-                        ? "Finish"
-                        : "Complete Step"}
+                        ? "Submit"
+                        : "Next"}
                     </Button>
                   ))}
               </Box>
@@ -151,6 +181,9 @@ function EmployeeLayout() {
           )}
         </div>
       </Box>
+      {submitPage && (
+        <EmpSubmitPage submitPage={submitPage} setSubmitPage={setSubmitPage} />
+      )}
     </div>
   );
 }
