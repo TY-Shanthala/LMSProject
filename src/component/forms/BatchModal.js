@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { batchSubmit } from "../../services/utils/batch/BarchServices";
 import DatePickerComponent from "../atom/DatePickerComponent";
 import InputComponent from "../atom/InputComponent";
@@ -7,9 +7,12 @@ import MultipleSelectCheckmarks from "../atom/MultiSelectDropdown";
 import SimpleDropdown from "../atom/SimpleDropdown";
 import ModalComponent from "../molicules/ModalComponent";
 
-function BatchModal({ setOpenBatch, getTableData,setDefaultFormData,defaultFormData }) {
-
-
+function BatchModal({
+  setOpenBatch,
+  getTableData,
+  setDefaultFormData,
+  defaultFormData,
+}) {
   const [error, setError] = useState({
     name: false,
     mentorName: false,
@@ -19,6 +22,8 @@ function BatchModal({ setOpenBatch, getTableData,setDefaultFormData,defaultFormD
     endDate: false,
     endDateString: false,
   });
+
+  const [options, setOptions] = useState([]);
 
   console.log(defaultFormData.technologies, "defaultFormData.technologies");
 
@@ -84,7 +89,24 @@ function BatchModal({ setOpenBatch, getTableData,setDefaultFormData,defaultFormD
 
           <div className="mb-4">
             <p className="mb-0">Technologies</p>
-            <MultipleSelectCheckmarks modalWidth="100%" />
+            <MultipleSelectCheckmarks
+              modalWidth="100%"
+              options={options}
+              value={defaultFormData.skills}
+              onChange={(e, val) => {
+                const tempId = [];
+                const tempSkill = [];
+                val.map((item) => {
+                  // tempId.push(item.sName.toString());
+                  tempSkill.push(item.value);
+                });
+                setDefaultFormData({
+                  ...defaultFormData,
+                  skills: tempSkill,
+                  skillsId: tempId,
+                });
+              }}
+            />
             {/* <InputComponent
               value={defaultFormData.technologies}
               onChange={(e) => {

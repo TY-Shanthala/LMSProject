@@ -28,6 +28,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Autocomplete, TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import ButtonComponent from "../atom/ButtonComponent";
+import { messageService } from "../../services/rxjsServices";
 
 const useStyles = makeStyles({
   tableHeadBg: {
@@ -431,6 +432,14 @@ export default function TableComponent({
   };
 
   const classes = useStyles();
+  useEffect(() => {
+    const subscription = messageService.getMessage().subscribe((val) => {
+      setSearchText(val);
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     headCells.map((headCell) => {

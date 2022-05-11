@@ -14,6 +14,7 @@ import {
   batchGetAll,
   batchDelete,
 } from "../../../services/utils/batch/BarchServices";
+import { messageService } from "../../../services/rxjsServices";
 
 function Batch() {
   const [openBatch, setOpenBatch] = useState(false);
@@ -95,6 +96,9 @@ function Batch() {
             size="default"
             placeholder="Search"
             prefix={<SearchOutlined />}
+            onChange={(e) => {
+              messageService.sendMessage(e.target.value);
+            }}
           />
         </Box>
         <Box className="col-2">
