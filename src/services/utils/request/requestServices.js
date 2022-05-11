@@ -2,7 +2,7 @@ import serviceUtil from "../../index";
 
 const requestGetAll = () => {
   return serviceUtil
-    .get("")
+    .get("lms/v1/admin/request")
     .then((res) => {
       const data = res && res.data;
       return { data };

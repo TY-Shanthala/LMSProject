@@ -1,10 +1,11 @@
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import ButtonComponent from "../../atom/ButtonComponent";
 import DatePickerComponent from "../../atom/DatePickerComponent";
 import InputComponent from "../../atom/InputComponent";
 import SimpleDropdown from "../../atom/SimpleDropdown";
 
-function PrimaryEmployee({ empPayload }) {
+function PrimaryEmployee({ empPayload, setEmpPayload, handleNextClick }) {
   const [defaultFormData, setDefaultFormData] = React.useState({
     empId: "",
     empName: "",
@@ -80,6 +81,36 @@ function PrimaryEmployee({ empPayload }) {
   // useEffect(() => {
   //   console.log(empPayload);
   // }, []);
+
+  const handleNext = () => {
+    const {
+      empId,
+      empName,
+      doj,
+      dob,
+      email,
+      bloodGroup,
+      designation,
+      gender,
+      nationality,
+      employeeStatus,
+    } = defaultFormData;
+    handleNextClick();
+    setEmpPayload({
+      ...empPayload,
+      empId: empId,
+      empName: empName,
+      doj: doj,
+      dob: dob,
+      email: email,
+      bloodGroup: bloodGroup,
+      designation: designation,
+      gender: gender,
+      nationality: nationality,
+      status: employeeStatus,
+    });
+  };
+
   return (
     <div className="m-5">
       <div className="row justify-content-center ">
@@ -194,6 +225,7 @@ function PrimaryEmployee({ empPayload }) {
               <SimpleDropdown />
             </div>
           </div>
+          <ButtonComponent onClick={() => handleNext()} />
         </div>
       </div>
     </div>

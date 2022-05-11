@@ -1,8 +1,25 @@
 import React from "react";
+import ButtonComponent from "../../../atom/ButtonComponent";
 import InputComponent from "../../../atom/InputComponent";
 import SimpleDropdown from "../../../atom/SimpleDropdown";
 
-function SecondaryInfo() {
+function SecondaryInfo({ empPayload, setEmpPayload, handleNextClick }) {
+  const handleNext = () => {
+    handleNextClick();
+    // setEmpPayload({
+    //   ...empPayload,
+    //   empId: empId,
+    //   empName: empName,
+    //   doj: doj,
+    //   dob: dob,
+    //   email: email,
+    //   bloodGroup: bloodGroup,
+    //   designation: designation,
+    //   gender: gender,
+    //   nationality: nationality,
+    //   status: employeeStatus,
+    // });
+  };
   return (
     <div>
       <div className="m-5">
@@ -44,6 +61,7 @@ function SecondaryInfo() {
                 <SimpleDropdown />
               </div>
             </div>
+            <ButtonComponent onClick={() => handleNext()} />
           </div>
         </div>
       </div>

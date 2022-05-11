@@ -8,38 +8,86 @@ import Experience from "../pages/employee/experience/Experience";
 import SecondaryInfo from "../pages/employee/secondaryInfo/SecondaryInfo";
 import TechnicalSkills from "../pages/employee/technicalSkills/TechnicalSkills";
 
-const EmployeeRoute = ({ empPayload, setEmpPayload }) => {
+const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
   const routesObj = [
     {
-      element: <PrimaryEmployee empPayload={empPayload} />,
+      element: (
+        <PrimaryEmployee
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/primaryInfo",
     },
     {
-      element: <SecondaryInfo empPayload={empPayload} />,
+      element: (
+        <SecondaryInfo
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/secondaryInfo",
     },
     {
-      element: <EducationDetails empPayload={empPayload} />,
+      element: (
+        <EducationDetails
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/educationDetails",
     },
     {
-      element: <AddressDetails empPayload={empPayload} />,
+      element: (
+        <AddressDetails
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/addressDetails",
     },
     {
-      element: <BankDetails empPayload={empPayload} />,
+      element: (
+        <BankDetails
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/bankDetails",
     },
     {
-      element: <TechnicalSkills empPayload={empPayload} />,
+      element: (
+        <TechnicalSkills
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/technicalSkills",
     },
     {
-      element: <Experience empPayload={empPayload} />,
+      element: (
+        <Experience
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/experience",
     },
     {
-      element: <Contact empPayload={empPayload} />,
+      element: (
+        <Contact
+          empPayload={empPayload}
+          setEmpPayload={setEmpPayload}
+          handleNextClick={handleNextClick}
+        />
+      ),
       path: "/contact",
     },
   ];

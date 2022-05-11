@@ -2,18 +2,18 @@ import React from "react";
 import { Input, AutoComplete } from "antd";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-function SimpleDropdown() {
-  const options = [
-    {
-      value: "Burns Bay Road",
-    },
-    {
-      value: "Downing Street",
-    },
-    {
-      value: "Wall Street",
-    },
-  ];
+function SimpleDropdown({ options = [] }) {
+  // const options = [
+  //   {
+  //     value: "Burns Bay Road",
+  //   },
+  //   {
+  //     value: "Downing Street",
+  //   },
+  //   {
+  //     value: "Wall Street",
+  //   },
+  // ];
   return (
     <div>
       <AutoComplete

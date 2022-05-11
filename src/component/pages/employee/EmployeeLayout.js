@@ -127,6 +127,7 @@ function EmployeeLayout() {
                 <EmployeeRoute
                   setEmpPayload={setEmpPayload}
                   empPayload={empPayload}
+                  handleNextClick={handleComplete}
                 />
               </Box>
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
@@ -153,7 +154,7 @@ function EmployeeLayout() {
                 >
                   Next
                 </Button> */}
-                {activeStep !== steps.length &&
+                {/* {activeStep !== steps.length &&
                   (completed[activeStep] ? (
                     <Typography
                       variant="caption"
@@ -175,7 +176,7 @@ function EmployeeLayout() {
                         ? "Submit"
                         : "Next"}
                     </Button>
-                  ))}
+                  ))} */}
               </Box>
             </React.Fragment>
           )}

@@ -10,7 +10,7 @@ import { IconButton, Paper } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function EducationDetails() {
+function EducationDetails({ empPayload, setEmpPayload, handleNextClick }) {
   const [defaultFormData, setDefaultFormData] = React.useState([
     {
       educationType: "",

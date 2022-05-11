@@ -1,8 +1,8 @@
 import serviceUtil from "../../index";
 
-const adminMentorGetAll = () => {
+const mentorBatchGetAll = () => {
   return serviceUtil
-    .get("lms/v1/admin/mentor")
+    .get("")
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -13,9 +13,9 @@ const adminMentorGetAll = () => {
     });
 };
 
-const adminMentorSubmit = (payload) => {
+const mentorBatchSubmit = (payload) => {
   return serviceUtil
-    .post("lms/v1/admin/mentor/post", payload)
+    .post("", payload)
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -26,9 +26,9 @@ const adminMentorSubmit = (payload) => {
     });
 };
 
-const adminMentorDelete = (payload) => {
+const mentorBatchDelete = (payload) => {
   return serviceUtil
-    .deleteAll(`lmsuser/mentordelete?empId=${payload}`)
+    .deleteAll(`lms/v1/admin/batch/${payload}`)
     .then((res) => {
       const data = res && res.data;
       return { data };
@@ -39,4 +39,4 @@ const adminMentorDelete = (payload) => {
     });
 };
 
-export { adminMentorGetAll, adminMentorSubmit, adminMentorDelete };
+export { mentorBatchGetAll, mentorBatchSubmit, mentorBatchDelete };

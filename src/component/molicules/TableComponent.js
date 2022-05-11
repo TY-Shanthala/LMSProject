@@ -65,11 +65,11 @@ const useStyles = makeStyles({
   },
   deleteIcon: {
     color: "#1976d2",
-    fontSize: "20px",
+    // fontSize: "20px",
     cursor: "pointer",
     "&:hover": {
       color: "red",
-      fontSize: "20px",
+      // fontSize: "20px",
       cursor: "pointer",
     },
   },
@@ -407,6 +407,8 @@ export default function TableComponent({
   previewMenuName = "",
   previewMenuHidden = false,
   showEditAndDelete = true,
+  handleApprove = () => {},
+  handleReject = () => {},
 }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("col1");
@@ -523,6 +525,8 @@ export default function TableComponent({
             tablerow={tablerow}
             checkBoxSelected={setSelected}
             showCheckbox={showCheckbox}
+            // handleApprove = () => {},
+            // handleReject = () => {},
           />
           <TableBody>
             {stableSort(rows, getComparator(order, orderBy))
@@ -634,15 +638,29 @@ export default function TableComponent({
                           </IconButton>
                         </>
                       ) : (
-                        <>
+                        <div className="d-flux">
                           <ButtonComponent
                             size="small"
                             variant="outlined"
-                            style={{ color: "red" }}
+                            style={{
+                              backgroundColor: "#00951E1A",
+                              color: "#00811A",
+                              padding: "2px",
+                            }}
                             label="Approve"
+                            onClick={handleApprove}
                           />
-                          <ButtonComponent />
-                        </>
+                          <ButtonComponent
+                            size="small"
+                            variant="outlined"
+                            style={{
+                              backgroundColor: "#B2000C80",
+                              color: "#CE000E",
+                            }}
+                            label="Reject"
+                            onClick={handleReject}
+                          />
+                        </div>
                       )}
                       {/* )} */}
                     </TableCell>
