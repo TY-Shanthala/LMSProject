@@ -107,7 +107,7 @@ function LoginForm() {
       console.log(data);
       localStorage.setItem("token", data);
       localStorage.setItem("role", dataRes.data.data.role);
-      history("/dashboard");
+      history("/batch");
       setDefaultFormData({ ...defaultFormData, empId: "" });
       setDefaultFormData({ ...defaultFormData, password: "" });
     } else {
