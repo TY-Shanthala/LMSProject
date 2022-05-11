@@ -4,7 +4,7 @@ import InputComponent from "../../../atom/InputComponent";
 import ModalComponent from "../../../molicules/ModalComponent";
 import MultiSelectDropdown from "../../../atom/MultiSelectDropdown";
 import { adminMentorSubmit } from "../../../../services/utils/admin-mentor/AdminMentorServices";
-import { categoryGet } from "../../../../services/utils/commonApi";
+import { categoryGet, technologirsGet } from "../../../../services/utils/commonApi";
 
 function AdminMentorModel({
   setOpenMentor,
@@ -20,7 +20,7 @@ function AdminMentorModel({
   }, []);
 
   const getOptions = async () => {
-    const { data, errRes } = await categoryGet();
+    const { data, errRes } = await technologirsGet();
     console.log(data.data, "data");
     if (data.data) {
       const tempOption = [];

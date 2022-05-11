@@ -2,11 +2,14 @@ import React from "react";
 import TextAreaComponent from "../../atom/TextAreaComponent";
 import ModalComponent from "../../molicules/ModalComponent";
 
-function ReasonRejection() {
+function ReasonRejection({ setReject, reject }) {
   return (
     <div>
       <ModalComponent
-        open={true}
+        open={reject}
+        onCloseIconClick={() => {
+          setReject(false);
+        }}
         modalTitle="Reason for Rejection"
         modalWidth={400}
         showPreviousBtn={false}

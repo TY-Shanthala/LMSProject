@@ -1,17 +1,20 @@
 import React from "react";
+import SimpleDropdown from "../../atom/SimpleDropdown";
 import TextAreaComponent from "../../atom/TextAreaComponent";
 import ModalComponent from "../../molicules/ModalComponent";
 
-function ChangeStatus() {
+function ChangeStatus({ approve, setApprove }) {
   return (
     <div>
       <ModalComponent
-        open={true}
+        open={approve}
         modalWidth={400}
         showPreviousBtn={false}
         modalTitle="Change status"
         onSubmitBtnClick={() => {}}
-        onCloseIconClick={() => {}}
+        onCloseIconClick={() => {
+          setApprove(false);
+        }}
       >
         <div className="px-5 p-2 overflow Y-scroll h-550">
           <div className="mb-2">

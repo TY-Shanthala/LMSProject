@@ -32,7 +32,7 @@ function MultiSelectDropdown({
       >
         {state.map((val) => {
           return (
-            <Option value={val.value} label={val.value} title={val.id}>
+            <Option value={val.tech} label={val.tech} title={val.tech}>
               <div className="demo-option-label-item">{val.value}</div>
             </Option>
           );

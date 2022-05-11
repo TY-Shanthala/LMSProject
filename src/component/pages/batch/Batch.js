@@ -22,6 +22,9 @@ function Batch() {
   const [rows, setRows] = useState([]);
   const [selected, setSelected] = useState([]);
   const [deleteData, setDeleteData] = useState("");
+  const [previousFormData, setPreviousFormData] = useState([]);
+  const [modalValue, setModalValue] = useState("add");
+  const [batchId, setBatchId] = useState("");
   const [defaultFormData, setDefaultFormData] = useState({
     name: "",
     mentorName: "",
@@ -36,22 +39,43 @@ function Batch() {
     getTableData();
   }, []);
 
+  const hanldeEditClick = (id) => {
+    let data;
+    batchData &&
+      batchData.map((item, index) => {
+        if (index + 1 === id) {
+          data = item;
+        }
+      });
+    setPreviousFormData(data);
+    console.log("first", data);
+    setBatchId(data.id);
+    setDefaultFormData({
+      name: data.name,
+      mentorName: data.mentorName,
+      // technologies: data.technologies,
+      startDate: data.startDate,
+      endDate: data.blog_image_url,
+    });
+    hanldeEditClick();
+    setModalValue("edit");
+  };
+
   const getTableData = async () => {
     const { data, errRes } = await batchGetAll();
     setBatchData(data.data);
     let arrayOfRows = [];
     data &&
       data.data.map((item, index) => {
-        console.log(data);
         arrayOfRows.push({
           col1: index + 1,
           // col1: item.number,
-          col2: item.batchId,
+          col2: item.id,
           col3: item.batchName,
           col4: item.mentorName,
           col5: item.technologies.map((ele) => (
             <Chip
-              label={ele.technologyName}
+              label={ele.tech}
               variant="outlined"
               color="primary"
               sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
@@ -68,10 +92,11 @@ function Batch() {
   const deleteItem = async (id) => {
     let batchId = "";
     batchData.map((item, index) => {
-      if (index + 1 === id) {
-        batchId = item.batchId;
+      if (index === id) {
+        batchId = item.id;
       }
     });
+    console.log("type of", batchId);
     const { data, errRes } = await batchDelete(batchId);
     console.log(data);
     console.log(errRes);

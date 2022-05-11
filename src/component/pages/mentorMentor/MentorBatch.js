@@ -8,45 +8,71 @@ import { Input } from "antd";
 // import { UserOutlined } from "@ant-design/icons";
 import { SearchOutlined } from "@mui/icons-material";
 import TableComponent from "../../molicules/TableComponent";
-// import batchGetAll from "../../../services/util/batch/BatchServices";
+import BatchModal from "../../forms/BatchModal";
 import CONSTANTS from "../../constents/Index";
-import AdminMentorModel from "../../forms/login/adminMentorModel/AdminMentorModel";
 import {
-  adminMentorDelete,
-  adminMentorGetAll,
-} from "../../../services/utils/admin-mentor/AdminMentorServices";
-import { messageService } from "../../../services/rxjsServices";
+  batchGetAll,
+  batchDelete,
+} from "../../../services/utils/batch/BarchServices";
 
-function AdminMentor() {
-  const [openMentor, setOpenMentor] = useState(false);
-  const [mentorData, setMentorData] = useState([]);
-  const [deleteData, setDeleteData] = useState("");
+function MentorBatch() {
+  const [openBatch, setOpenBatch] = useState(false);
+  const [batchData, setBatchData] = useState([]);
   const [rows, setRows] = useState([]);
-
+  const [selected, setSelected] = useState([]);
+  const [deleteData, setDeleteData] = useState("");
+  const [previousFormData, setPreviousFormData] = useState([]);
+  const [modalValue, setModalValue] = useState("add");
+  const [batchId, setBatchId] = useState("");
   const [defaultFormData, setDefaultFormData] = useState({
+    name: "",
     mentorName: "",
-    employeeId: "",
-    email: "",
-    skills: [],
-    skillsId: [],
+    technologies: "",
+    startDate: "",
+    startDateString: "",
+    endDate: "",
+    endDateString: "",
   });
 
   useEffect(() => {
     getTableData();
   }, []);
 
+  const hanldeEditClick = (id) => {
+    let data;
+    batchData &&
+      batchData.map((item, index) => {
+        if (index + 1 === id) {
+          data = item;
+        }
+      });
+    setPreviousFormData(data);
+    console.log("first", data);
+    setBatchId(data.id);
+    setDefaultFormData({
+      name: data.name,
+      mentorName: data.mentorName,
+      // technologies: data.technologies,
+      startDate: data.startDate,
+      endDate: data.blog_image_url,
+    });
+    hanldeEditClick();
+    setModalValue("edit");
+  };
+
   const getTableData = async () => {
-    const { data, errRes } = await adminMentorGetAll();
-    setMentorData(data.data);
+    const { data, errRes } = await batchGetAll();
+    setBatchData(data.data);
     let arrayOfRows = [];
     data &&
       data.data.map((item, index) => {
         arrayOfRows.push({
           col1: index + 1,
+          // col1: item.number,
           col2: item.id,
+          col3: item.batchName,
           col4: item.mentorName,
-          col5: item.empId,
-          col6: item.technologies.map((ele, index) => (
+          col5: item.technologies.map((ele) => (
             <Chip
               label={ele.tech}
               variant="outlined"
@@ -54,20 +80,25 @@ function AdminMentor() {
               sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
             />
           )),
+          col6: item.startDate,
+          col7: item.endDate,
+          col8: item.status,
         });
       });
     setRows(arrayOfRows);
   };
 
   const deleteItem = async (id) => {
-    let empId = "";
-    mentorData.map((item, index) => {
-      if (index + 1 === id) {
-        empId = item.empId;
+    let batchId = "";
+    batchData.map((item, index) => {
+      if (index === id) {
+        batchId = item.id;
       }
     });
-    const { data, errRes } = await adminMentorDelete(empId);
+    console.log("type of", batchId);
+    const { data, errRes } = await batchDelete(batchId);
     console.log(data);
+    console.log(errRes);
     if (data) {
       getTableData();
     }
@@ -82,26 +113,23 @@ function AdminMentor() {
         className="row"
       >
         <Box className="col-6">
-          <Typography color={"#FAA81D"}>Mentors list</Typography>
+          <Typography color={"#FAA81D"}>Batch list</Typography>
         </Box>
         <Box className="col-4 d-flex">
           <Input
             size="default"
             placeholder="Search"
             prefix={<SearchOutlined />}
-            onChange={(e) => {
-              messageService.sendMessage(e.target.value);
-            }}
           />
         </Box>
         <Box className="col-2">
           <ButtonComponent
-            label="New Mentor"
+            label="New Batch"
             muiProps="orange"
             fullwidth
             size="small"
             onClick={() => {
-              setOpenMentor(true);
+              setOpenBatch(true);
             }}
             showIcon={true}
             iconOrintation="start"
@@ -112,21 +140,24 @@ function AdminMentor() {
       <div classNamw="m-2">
         <TableComponent
           tablerow={rows}
-          headCells={CONSTANTS.ADMIN_MENTOR_HEADER}
+          headCells={CONSTANTS.MENTROR_BATCH_HEADER}
           deleteIconClick={(id) => deleteItem(id)}
+          editIconClick={(id) => {
+            setOpenBatch(true);
+          }}
         />
       </div>
-      {openMentor && (
-        <AdminMentorModel
+      {openBatch && (
+        <BatchModal
           getTableData={getTableData}
-          openMentor={openMentor}
-          setOpenMentor={setOpenMentor}
-          setDefaultFormData={setDefaultFormData}
+          openBatch={openBatch}
+          setOpenBatch={setOpenBatch}
           defaultFormData={defaultFormData}
+          setDefaultFormData={setDefaultFormData}
         />
       )}
     </div>
   );
 }
 
-export default AdminMentor;
+export default MentorBatch;

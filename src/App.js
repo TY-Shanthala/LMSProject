@@ -11,7 +11,11 @@ import EducationDetails from "./component/pages/employee/educationDetails/Educat
 import AdminMentor from "./component/pages/mentor/Mentor";
 import XlDownloadComponent from "./component/atom/XlDownloadComponent";
 import EmployeeLayoutComponent from "./component/organism/EmployeeLayoutComponent";
-
+import PieChartComponent from "./component/molicules/PieChartComponent";
+import ButtonComponent from "./component/atom/ButtonComponent";
+import TableComponent from "./component/molicules/TableComponent";
+import DonutPiChart from "../src/component/molicules/DonutPiChart";
+import MentorLayoutComponent from "./component/organism/MentorLayoutComponent";
 function App() {
   return (
     <div>
@@ -37,7 +41,15 @@ function App() {
       {/* <EmployeeLayout /> */}
       {/* <EmployeeLayoutComponent /> */}
       {/* </BrowserRouter> */}
+      <BrowserRouter>
+        {/* <LayoutComponent /> */}
+        {/* <EmployeeLayout /> */}
+        {/* <MentorLayoutComponent /> */}
+      </BrowserRouter>
       {/* <Login /> */}
+      {/* <div className="m-5">
+        <DonutPiChart />
+      </div> */}
     </div>
   );
 }
