@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   },
   tableHeadColor: {
     color: "#3c3838",
-    fontWeight: "400",
+    fontWeight: "600",
   },
   indeterminateColor: {
     color: "#f50057",
@@ -351,7 +351,7 @@ function EnhancedTableHead(props) {
               sortDirection={orderBy === headCell.id ? order : false}
               style={{ width: headCell.width ? headCell.width : "auto" }}
               sx={{ borderBottom: 0 }}
-              className="fs-12"
+              className="fs-12 fw-600"
             >
               <TableSortLabel
                 active={true}
@@ -380,7 +380,7 @@ function EnhancedTableHead(props) {
           );
         })}
         <TableCell
-          sx={{ borderBottom: 0 }}
+          sx={{ borderBottom: 0, fontWeight: "bold" }}
           align="left"
           padding="none"
           style={{ width: 150 }}
@@ -510,6 +510,15 @@ export default function TableComponent({
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <Box sx={{ width: "100%", margin: "10px auto" }}>
@@ -655,9 +664,10 @@ export default function TableComponent({
                               backgroundColor: "#00951E1A",
                               color: "#00811A",
                               padding: "2px",
+                              margin: "5px",
                             }}
                             label="Approve"
-                            onClick={handleApprove}
+                            onClick={() => handleApprove(row.col1)}
                           />
                           <ButtonComponent
                             size="small"
@@ -665,9 +675,10 @@ export default function TableComponent({
                             style={{
                               backgroundColor: "#B2000C80",
                               color: "#CE000E",
+                              margin: "5px",
                             }}
                             label="Reject"
-                            onClick={handleReject}
+                            onClick={() => handleReject(row.col1)}
                           />
                         </div>
                       )}
@@ -685,6 +696,17 @@ export default function TableComponent({
             )}
           </TableBody>
         </Table>
+        {rows.length > 0 && (
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        )}
       </TableContainer>
     </Box>
   );

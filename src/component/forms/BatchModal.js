@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { batchSubmit } from "../../services/utils/batch/BarchServices";
-import { technologirsGet } from "../../services/utils/commonApi";
+import { categoryGet, technologirsGet } from "../../services/utils/commonApi";
 import DatePickerComponent from "../atom/DatePickerComponent";
 import InputComponent from "../atom/InputComponent";
 import MultipleSelectCheckmarks from "../atom/MultiSelectDropdown";
@@ -15,12 +15,6 @@ function BatchModal({
   setDefaultFormData,
   defaultFormData,
 }) {
-<<<<<<< HEAD
-=======
-  const [options, setOptions] = useState([]);
-  const [catagoryGroupOptions, setCatagoryGroupOptions] = useState([]);
-
->>>>>>> 283eac40cfd33549bdb5482ba5f45a53e42b7efc
   const [error, setError] = useState({
     name: false,
     mentorName: false,
@@ -31,39 +25,41 @@ function BatchModal({
     endDateString: false,
   });
 
-<<<<<<< HEAD
+  useEffect(() => {
+    getOptions();
+    console.log("first", options);
+  }, []);
+
   const [options, setOptions] = useState([]);
 
-  console.log(defaultFormData.technologies, "defaultFormData.technologies");
-=======
   useEffect(() => {
     getOptions();
     console.log("first", options);
   }, []);
 
   const getOptions = async () => {
-    const { data, errRes } = await technologirsGet();
+    const { data, errRes } = await categoryGet();
     console.log(data.data, "data");
     if (data.data) {
       const tempOption = [];
       data.data.map((item, index) => {
         tempOption.push({
-          value: item.tech,
-          id: item.id,
+          value: item.sName,
+          id: item.index,
         });
       });
 
       setOptions(tempOption);
     }
   };
->>>>>>> 283eac40cfd33549bdb5482ba5f45a53e42b7efc
 
   const modalValue = "add";
+  
   const handleSubmit = async () => {
     const payload = {
       batchName: defaultFormData.name,
       mentorName: defaultFormData.mentorName,
-      techId: defaultFormData.technologies,
+      technologies: defaultFormData.technologies,
       startDate: defaultFormData.startDateString,
       endDate: defaultFormData.endDateString,
     };
@@ -106,7 +102,7 @@ function BatchModal({
 
           <div className="mb-4">
             <p className="mb-0">Mentor Name</p>
-            <SimpleDropdown options={options} />
+            <SimpleDropdown />
             {/* <InputComponent
               value={defaultFormData.mentorName}
               onChange={(e) => {
@@ -121,11 +117,18 @@ function BatchModal({
           <div className="mb-4">
             <p className="mb-0">Technologies</p>
             <MultipleSelectCheckmarks
-              value={defaultFormData.technologies}
-              onChange={(e) => {
+              value={defaultFormData.skills}
+              onChange={(e, val) => {
+                const tempId = [];
+                const tempSkill = [];
+                val.map((item) => {
+                  // tempId.push(item.sName.toString());
+                  tempSkill.push(item.value);
+                });
                 setDefaultFormData({
                   ...defaultFormData,
-                  technologies: e.tech,
+                  skills: tempSkill,
+                  skillsId: tempId,
                 });
               }}
               options={options}

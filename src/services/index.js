@@ -9,7 +9,7 @@ const post = (url, payload) => {
 };
 
 const put = (url, payload) => {
-  return axiosInstance.post(url, payload);
+  return axiosInstance.put(url, payload);
 };
 
 const deleteAll = (url, payload) => {

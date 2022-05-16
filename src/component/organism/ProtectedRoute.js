@@ -1,6 +1,8 @@
 import { Navigate } from "react-router-dom";
 import LayoutComponent from "./LayoutComponent";
 import atob from "atob";
+import MentorLayoutComponent from "./MentorLayoutComponent";
+import EmployeeLayout from "../pages/employee/EmployeeLayout";
 
 const ProtectedRoute = ({ children }) => {
   const user = localStorage.getItem("token");
@@ -17,6 +19,10 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/" replace />;
   } else if (role === "admin") {
     return <LayoutComponent />;
+  } else if (role === "mentor") {
+    return <MentorLayoutComponent />;
+  } else if (role === "employee") {
+    return <EmployeeLayout />;
   } else {
     return <p>page not found</p>;
   }

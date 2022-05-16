@@ -15,6 +15,8 @@ import ButtonComponent from "../atom/ButtonComponent";
 import { Box } from "@mui/material";
 import MentorRoute from "../routes/MentorRoute";
 import MentorSidebar from "./MentorSideBar";
+import LogiTechno from "../../assets/login/technologo.svg";
+
 const { Header, Content, Sider } = Layout;
 
 function MentorLayoutComponent() {
@@ -35,7 +37,9 @@ function MentorLayoutComponent() {
   return (
     <Layout className="p-0">
       <Header color="#FFFFFF" className="header d-flex ">
-        <div className="logo" />
+        <div className="logo mt-0 " style={{ backgroundColor: "#0000" }}>
+          <img src={LogiTechno} style={{ width: "188px", height: "54px" }} />
+        </div>
 
         <Box
           style={{ float: "right", width: "500px", marginLeft: "350px" }}
@@ -74,9 +78,9 @@ function MentorLayoutComponent() {
           >
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             {activeIndex === "/mentorDashboard" ? (
-              <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+              <Breadcrumb.Item></Breadcrumb.Item>
             ) : activeIndex === "/mentorBatch" ? (
-              <Breadcrumb.Item>Batch</Breadcrumb.Item>
+              <Breadcrumb.Item>Request list</Breadcrumb.Item>
             ) : (
               activeIndex === "/request"
             )}

@@ -19,14 +19,14 @@ const ADMIN_MENTOR_HEADER = [
     disablePadding: false,
     label: "Employee ID",
     // filter: "select",
-    width: 150,
+    width: 130,
   },
   {
     id: "col4",
     nummeric: false,
     disablePadding: false,
     label: "E-mail ID",
-    width: 150,
+    width: 230,
   },
   {
     id: "col5",

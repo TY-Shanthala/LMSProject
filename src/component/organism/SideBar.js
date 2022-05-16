@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../style/sidebar.scss";
 import AddUser from "../../assets/add-user .png";
+import AddRequest from "../../assets/icons/request.svg";
+import AddMentor from "../../assets/icons/mentor.svg";
+import AddBatch from "../../assets/icons/batch.svg";
 
 const SideMenuComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,7 +23,13 @@ const SideMenuComponent = () => {
     {
       display: "Batch",
       page: "Batch",
-      inActiveIcon: "icon",
+      inActiveIcon: (
+        <img
+          src={AddBatch}
+          style={{ color: "#fff", width: "23px" }}
+          alt="batch"
+        />
+      ),
       activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="batch" />,
       to: "/batch",
       section: "batch",
@@ -29,7 +38,13 @@ const SideMenuComponent = () => {
     {
       display: "Mentor",
       page: "Mentor",
-      inActiveIcon: "icon",
+      inActiveIcon: (
+        <img
+          src={AddMentor}
+          style={{ color: "#fff", width: "23px" }}
+          alt="mentor"
+        />
+      ),
       activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="mentor" />,
       to: "/mentor",
       section: "mentor",
@@ -38,7 +53,13 @@ const SideMenuComponent = () => {
     {
       display: "Request",
       page: "Request",
-      inActiveIcon: "icon",
+      inActiveIcon: (
+        <img
+          src={AddRequest}
+          style={{ color: "#fff", width: "23px" }}
+          alt="request"
+        />
+      ),
       activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="request" />,
       to: "/request",
       section: "request",

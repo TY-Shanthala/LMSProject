@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../style/sidebar.scss";
 import AddUser from "../../assets/add-user .png";
+import AddBatch from "../../assets/icons/batch.svg";
+import AddDashboard from "../../assets/icons/dashboard.svg";
 
 const MentorSidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,21 +20,33 @@ const MentorSidebar = () => {
 
   const sidebarMenuItems = [
     {
-      display: "Batch",
-      page: "Batch",
-      inActiveIcon: "icon",
-      activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="batch" />,
-      to: "/mentorBatch",
-      section: "batch",
+      display: "Dashboard",
+      page: "dashboard",
+      inActiveIcon: (
+        <img
+          src={AddDashboard}
+          style={{ color: "#fff", width: "23px" }}
+          alt="mentor"
+        />
+      ),
+      activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="mentor" />,
+      to: "/mentorDashboard",
+      section: "mentorDashboard",
       child: [],
     },
     {
-      display: "Mentor",
-      page: "Mentor",
-      inActiveIcon: "icon",
-      activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="mentor" />,
-      to: "/mentorDashboard",
-      section: "mentor",
+      display: "Batch",
+      page: "Batch",
+      inActiveIcon: (
+        <img
+          src={AddBatch}
+          style={{ color: "#fff", width: "23px" }}
+          alt="mentor"
+        />
+      ),
+      activeIcon: <img src={AddUser} style={{ color: "#fff" }} alt="batch" />,
+      to: "/mentorBatch",
+      section: "mentorBatch",
       child: [],
     },
   ];

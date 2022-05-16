@@ -43,12 +43,12 @@ function AdminMentor() {
       data.data.map((item, index) => {
         arrayOfRows.push({
           col1: index + 1,
-          col2: item.id,
-          col4: item.mentorName,
-          col5: item.empId,
-          col6: item.technologies.map((ele, index) => (
+          col2: item.mentorName,
+          col3: item.empId,
+          col4: item.emailId,
+          col6: item.skills.map((ele, index) => (
             <Chip
-              label={ele.tech}
+              label={ele.sName}
               variant="outlined"
               color="primary"
               sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}

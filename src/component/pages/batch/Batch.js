@@ -47,15 +47,14 @@ function Batch() {
           data = item;
         }
       });
-    setPreviousFormData(data);
     console.log("first", data);
     setBatchId(data.id);
     setDefaultFormData({
-      name: data.name,
+      name: data.batchName,
       mentorName: data.mentorName,
       // technologies: data.technologies,
       startDate: data.startDate,
-      endDate: data.blog_image_url,
+      endDate: data.endDate,
     });
     hanldeEditClick();
     setModalValue("edit");
@@ -70,12 +69,12 @@ function Batch() {
         arrayOfRows.push({
           col1: index + 1,
           // col1: item.number,
-          col2: item.id,
+          col2: item.batchId,
           col3: item.batchName,
           col4: item.mentorName,
           col5: item.technologies.map((ele) => (
             <Chip
-              label={ele.tech}
+              label={ele.technologyName}
               variant="outlined"
               color="primary"
               sx={{ backgroundColor: "#086288", color: "#FFFFFF" }}
@@ -92,14 +91,11 @@ function Batch() {
   const deleteItem = async (id) => {
     let batchId = "";
     batchData.map((item, index) => {
-      if (index === id) {
-        batchId = item.id;
+      if (index + 1 === id) {
+        batchId = item.batchId;
       }
     });
-    console.log("type of", batchId);
     const { data, errRes } = await batchDelete(batchId);
-    console.log(data);
-    console.log(errRes);
     if (data) {
       getTableData();
     }
