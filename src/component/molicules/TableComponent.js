@@ -646,6 +646,7 @@ export default function TableComponent({
                               backgroundColor: "#00951E1A",
                               color: "#00811A",
                               padding: "2px",
+                              margin: "5px",
                             }}
                             label="Approve"
                             onClick={handleApprove}
@@ -656,6 +657,8 @@ export default function TableComponent({
                             style={{
                               backgroundColor: "#B2000C80",
                               color: "#CE000E",
+                              margin: "5px",
+                              padding: "2px",
                             }}
                             label="Reject"
                             onClick={handleReject}
