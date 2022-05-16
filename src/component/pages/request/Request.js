@@ -10,12 +10,17 @@ import CONSTANTS from "../../constents/Index";
 import { requestGetAll } from "../../../services/utils/request/requestServices";
 import ReasonRejection from "../../forms/request/ReasonRejection";
 import ChangeStatus from "../../forms/request/ChangeStatus";
+import { messageService } from "../../../services/rxjsServices";
 
 function Request() {
   const [rows, setRows] = useState([]);
   const [requestData, setRequestData] = useState([]);
   const [approve, setApprove] = useState(false);
   const [reject, setReject] = useState(false);
+  const [defaultFormData, setDefaultFormData] = useState({
+    reason: "",
+    empId: "",
+  });
 
   useEffect(() => {
     getTableData();
@@ -54,23 +59,44 @@ function Request() {
 
   const getTableData = async () => {
     const { data, errRes } = await requestGetAll();
+    console.log(data.data);
     setRequestData(data.data);
     let arrayOfRows = [];
     data &&
       data.data.map((item, index) => {
-        console.log(data);
-        arrayOfRows.push({
-          col1: index + 1,
-          col2: item.empId,
-          col3: item.empName,
-          col4: item.yop,
-          col5: item.percentage,
-          col6: item.experience,
-          col7: item.contactNo,
-        });
+        if (item.empStatus === "Active") {
+          item.educationDetails &&
+            item.educationDetails.length > 0 &&
+            item.educationDetails.sort((a, b) => a.yop - b.yop);
+
+          arrayOfRows.push({
+            col1: index + 1,
+            col2: item.empId,
+            col3: item.empName,
+            col4:
+              item.educationDetails &&
+              item.educationDetails.length > 0 &&
+              item.educationDetails[item.educationDetails.length - 1].yop,
+            col5:
+              item.educationDetails &&
+              item.educationDetails.length > 0 &&
+              item.educationDetails[item.educationDetails.length - 1]
+                .percentage,
+            col6:
+              item.experiance &&
+              item.experiance.length > 0 &&
+              item.experiance[item.experiance.length - 1].eYoe,
+            col7:
+              item.contact &&
+              item.contact.length > 0 &&
+              item.contact[item.contact.length - 1].contactNo,
+          });
+        }
       });
+
     setRows(arrayOfRows);
   };
+
   return (
     <div>
       <Toolbar
@@ -87,6 +113,7 @@ function Request() {
             size="default"
             placeholder="Search"
             prefix={<SearchOutlined />}
+            onChange={(e) => messageService.sendMessage(e.target.value)}
           />
         </Box>
       </Toolbar>
@@ -95,7 +122,13 @@ function Request() {
           handleApprove={() => {
             setApprove(true);
           }}
-          handleReject={() => {
+          handleReject={(id) => {
+            requestData &&
+              requestData.map((item, index) => {
+                if (index + 1 === id) {
+                  setDefaultFormData({ ...defaultFormData, empId: item.empId });
+                }
+              });
             setReject(true);
           }}
           showEditAndDelete={false}
@@ -103,7 +136,16 @@ function Request() {
           headCells={CONSTANTS.REQUEST_HEADER}
         />
       </div>
-      {reject && <ReasonRejection reject={reject} setReject={setReject} />}
+      {reject && (
+        <ReasonRejection
+          reject={reject}
+          setReject={setReject}
+          defaultFormData={defaultFormData}
+          setDefaultFormData={setDefaultFormData}
+          rows={rows}
+          getTableData={getTableData}
+        />
+      )}
       {approve && <ChangeStatus approve={approve} setApprove={setApprove} />}
     </div>
   );

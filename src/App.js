@@ -41,11 +41,11 @@ function App() {
       {/* <EmployeeLayout /> */}
       {/* <EmployeeLayoutComponent /> */}
       {/* </BrowserRouter> */}
-      <BrowserRouter>
-        <LayoutComponent />
-        {/* <EmployeeLayout /> */}
-        {/* <MentorLayoutComponent /> */}
-      </BrowserRouter>
+      {/* <BrowserRouter>
+        {/* <LayoutComponent /> */}
+      {/* <EmployeeLayout /> */}
+      {/* <MentorLayoutComponent /> */}
+      {/* </BrowserRouter> */}
       {/* <Login /> */}
       {/* <div className="m-5">
         <DonutPiChart />

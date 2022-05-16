@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import { Input } from "antd";
 
 function InputComponent({
+  className="",
   placeholder = "",
   value = "",
   onChange = () => {},

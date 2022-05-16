@@ -3,34 +3,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import image from "../../../assets/login/Image.png";
 // import { Form, Button, CardGroup, Card } from "react-bootstrap";
 import LoginForm from "../../forms/login/LoginForm";
+import { Card } from "@mui/material";
 
 const Login = () => {
   return (
-    <div className="bg-image d-flex justify-content-center align-items-center">
+    <div>
       <div
-        className="card mb-3"
-        style={{ maxWidth: 940, maxHeight: 900, backgroundColor: "#0000002B" }}
+        className="bgImg"
+        style={{ paddingTop: "6vh", paddingBottom: "7vh" }}
       >
-        <div className="row g-0">
-          <div className="col-md-8">
-            <img src={image} className="img-fluid rounded-start " />
-            {/* <div class="card-img-overlay">
-              <h1
-                className="txt-white  text-left"
-                style={{ marginTop: "24rem" }}
-              >
-                Good things on
-              </h1>{" "}
-              <h1 className="txt-white  text-left"> your way!</h1>
-            </div> */}
+        <Card
+          sx={{ maxWidth: 1000, minHeight: 500, padding: 0, paddingBottom: 0 }}
+          className="row m-auto"
+        >
+          <div className="col-md-8  bgReal d-inline-block">
+            <p
+              id="loginLeft"
+              className="text-left mb-0 mt-0 "
+              style={{ letterSpacing: "0px", marginLeft: "10px" }}
+            >
+              Good things on
+              <p className="mt-0 mb-0">your way!</p>
+            </p>
           </div>
 
-          <div className="col-md-4" style={{ backgroundColor: "#000000A2" }}>
-            <div className="card-body">
-              <LoginForm />
-            </div>
+          <div className="col-md-4 d-inline-block formBg">
+            <LoginForm />
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );

@@ -4,7 +4,10 @@ import InputComponent from "../../../atom/InputComponent";
 import ModalComponent from "../../../molicules/ModalComponent";
 import MultiSelectDropdown from "../../../atom/MultiSelectDropdown";
 import { adminMentorSubmit } from "../../../../services/utils/admin-mentor/AdminMentorServices";
-import { categoryGet, technologirsGet } from "../../../../services/utils/commonApi";
+import {
+  categoryGet,
+  technologirsGet,
+} from "../../../../services/utils/commonApi";
 
 function AdminMentorModel({
   setOpenMentor,
@@ -20,7 +23,7 @@ function AdminMentorModel({
   }, []);
 
   const getOptions = async () => {
-    const { data, errRes } = await technologirsGet();
+    const { data, errRes } = await categoryGet();
     console.log(data.data, "data");
     if (data.data) {
       const tempOption = [];
@@ -36,17 +39,17 @@ function AdminMentorModel({
   };
 
   const modalValue = "add";
-  // const handleSubmit = async () => {
-  //   const payload = {
-  //     mentorName: defaultFormData.mentorName,
-  //     empId: defaultFormData.employeeId,
-  //     emailId: defaultFormData.email,
-  //     skills: defaultFormData.skills,
-  //   };
-  //   const { data, errRes } =
-  //     modalValue === "add"
-  //       ? await adminMentorSubmit(payload)
-  //       : await adminMentorSubmit(payload);
+  const handleSubmit = async () => {
+    const payload = {
+      empId: defaultFormData.mentorName,
+      reason: defaultFormData.employeeId,
+      emailId: defaultFormData.email,
+      skills: defaultFormData.skills,
+    };
+    const { data, errRes } =
+      modalValue === "add"
+        ? await adminMentorSubmit(payload)
+        : await adminMentorSubmit(payload);
 
   //   if (data) {
   //     await getTableData();

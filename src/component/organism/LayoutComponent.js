@@ -13,6 +13,8 @@ import RouterComponent from "../routes/RouterComponent";
 import { useNavigate, useLocation } from "react-router-dom";
 import ButtonComponent from "../atom/ButtonComponent";
 import { Box } from "@mui/material";
+import LogiTechno from "../../assets/login/technologo.svg";
+
 const { Header, Content, Sider } = Layout;
 
 function LayoutComponent() {
@@ -33,7 +35,9 @@ function LayoutComponent() {
   return (
     <Layout className="p-0">
       <Header color="#FFFFFF" className="header d-flex ">
-        <div className="logo" />
+        <div className="logo mt-0 " style={{ backgroundColor: "#0000" }}>
+          <img src={LogiTechno} style={{ width: "188px", height: "54px" }} />
+        </div>
 
         <Box
           style={{ float: "right", width: "500px", marginLeft: "350px" }}
@@ -45,12 +49,16 @@ function LayoutComponent() {
             prefix={<SearchOutlined />}
           />
         </Box>
-
         <Box style={{ float: "right", marginLeft: "250px" }}>
           <ButtonComponent
             label="Logout"
             onClick={() => {
               handleLogout();
+            }}
+            style={{
+              border: "1px solid #075575",
+              backgroundColor: "transparent",
+              color: "#075575",
             }}
           />
         </Box>
