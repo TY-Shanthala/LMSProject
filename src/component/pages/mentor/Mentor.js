@@ -15,6 +15,7 @@ import {
   adminMentorDelete,
   adminMentorGetAll,
 } from "../../../services/utils/admin-mentor/AdminMentorServices";
+import { messageService } from "../../../services/rxjsServices";
 
 function AdminMentor() {
   const [openMentor, setOpenMentor] = useState(false);
@@ -88,6 +89,9 @@ function AdminMentor() {
             size="default"
             placeholder="Search"
             prefix={<SearchOutlined />}
+            onChange={(e) => {
+              messageService.sendMessage(e.target.value);
+            }}
           />
         </Box>
         <Box className="col-2">

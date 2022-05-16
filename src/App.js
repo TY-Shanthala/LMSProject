@@ -19,7 +19,7 @@ import MentorLayoutComponent from "./component/organism/MentorLayoutComponent";
 function App() {
   return (
     <div>
-      {/* <div className="w-100">
+      <div className="w-100">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
@@ -28,14 +28,19 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </div>{" "} */}
+      </div>{" "}
       {/* <LayoutComponent /> */}
       {/* <DetailsModal /> */}
       {/* </BrowserRouter>
-      </div> 
+      </div>  
 
       {/* <div className="m-5" style={{ width: "30%" }}> */}
       {/* </div> */}
+      {/* <BrowserRouter> */}
+      {/* <LayoutComponent /> */}
+      {/* <EmployeeLayout /> */}
+      {/* <EmployeeLayoutComponent /> */}
+      {/* </BrowserRouter> */}
       <BrowserRouter>
         <LayoutComponent />
         {/* <EmployeeLayout /> */}

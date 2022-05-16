@@ -15,9 +15,12 @@ function BatchModal({
   setDefaultFormData,
   defaultFormData,
 }) {
+<<<<<<< HEAD
+=======
   const [options, setOptions] = useState([]);
   const [catagoryGroupOptions, setCatagoryGroupOptions] = useState([]);
 
+>>>>>>> 283eac40cfd33549bdb5482ba5f45a53e42b7efc
   const [error, setError] = useState({
     name: false,
     mentorName: false,
@@ -28,6 +31,11 @@ function BatchModal({
     endDateString: false,
   });
 
+<<<<<<< HEAD
+  const [options, setOptions] = useState([]);
+
+  console.log(defaultFormData.technologies, "defaultFormData.technologies");
+=======
   useEffect(() => {
     getOptions();
     console.log("first", options);
@@ -48,6 +56,7 @@ function BatchModal({
       setOptions(tempOption);
     }
   };
+>>>>>>> 283eac40cfd33549bdb5482ba5f45a53e42b7efc
 
   const modalValue = "add";
   const handleSubmit = async () => {
