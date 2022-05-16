@@ -37,7 +37,7 @@ function App() {
       {/* <div className="m-5" style={{ width: "30%" }}> */}
       {/* </div> */}
       <BrowserRouter>
-        {/* <LayoutComponent /> */}
+        <LayoutComponent />
         {/* <EmployeeLayout /> */}
         {/* <MentorLayoutComponent /> */}
       </BrowserRouter>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Development URL
-const baseURL = "http://169.254.197.78:9090/";
+const baseURL = "http://192.168.74.53:9090/";
 
 const token = localStorage.getItem("token");
 

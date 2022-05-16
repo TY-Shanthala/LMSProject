@@ -15,7 +15,7 @@ import {
   batchDelete,
 } from "../../../services/utils/batch/BarchServices";
 
-function MentorBatch() {
+function MentorEmployeeList() {
   const [openBatch, setOpenBatch] = useState(false);
   const [batchData, setBatchData] = useState([]);
   const [rows, setRows] = useState([]);
@@ -137,4 +137,4 @@ function MentorBatch() {
   );
 }
 
-export default MentorBatch;
+export default MentorEmployeeList;

@@ -3,7 +3,12 @@ import ButtonComponent from "../../../atom/ButtonComponent";
 import InputComponent from "../../../atom/InputComponent";
 import SimpleDropdown from "../../../atom/SimpleDropdown";
 
-function SecondaryInfo({ empPayload, setEmpPayload, handleNextClick }) {
+function SecondaryInfo({
+  empPayload,
+  setEmpPayload,
+  handleNextClick,
+  handlePreviousClick,
+}) {
   const handleNext = () => {
     handleNextClick();
     // setEmpPayload({
@@ -61,7 +66,32 @@ function SecondaryInfo({ empPayload, setEmpPayload, handleNextClick }) {
                 <SimpleDropdown />
               </div>
             </div>
-            <ButtonComponent onClick={() => handleNext()} />
+            <div className="d-flex justify-content-between">
+              <div>
+                <ButtonComponent
+                  label="Previous"
+                  style={{
+                    backgroundColor: "#086288",
+                    color: "#FFFFFF",
+                    Fontfamily: "Open Sans, Semibold",
+                  }}
+                  size="default"
+                  onClick={() => handlePreviousClick()}
+                />
+              </div>
+              <div>
+                <ButtonComponent
+                  label="Next"
+                  style={{
+                    backgroundColor: "#086288",
+                    color: "#FFFFFF",
+                    Fontfamily: "Open Sans, Semibold",
+                  }}
+                  size="default"
+                  onClick={() => handleNext()}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

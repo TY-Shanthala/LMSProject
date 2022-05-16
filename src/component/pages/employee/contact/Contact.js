@@ -13,8 +13,19 @@ import "antd/dist/antd.css";
 import { Input, Select, Space, Cascader } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import { Option } from "antd/lib/mentions";
+import ButtonComponent from "../../../atom/ButtonComponent";
 
-function Contact() {
+function Contact({
+  empPayload,
+  setEmpPayload,
+  handleNextClick,
+  handlePreviousClick,
+  completedSteps,
+  totalSteps,
+  submitPage,
+  setSubmitPage,
+  allStepsCompleted,
+}) {
   const [active, setActive] = React.useState(false);
   const [defaultFormData, setDefaultFormData] = React.useState([
     {
@@ -22,6 +33,7 @@ function Contact() {
       contactNumber: "",
     },
   ]);
+
   const handleAddClick = () => {
     setActive(true);
     setDefaultFormData([
@@ -32,6 +44,13 @@ function Contact() {
       },
     ]);
   };
+  const handleSubmit = () => {
+    setSubmitPage(true);
+
+    allStepsCompleted() && handleNextClick();
+    setSubmitPage(true);
+  };
+
   const handleChange = (name, i, e) => {
     let tempFromData = [...defaultFormData];
     tempFromData[i].name = e.target.value;
@@ -109,6 +128,37 @@ function Contact() {
           </AccordionDetails>
         </Accordion>
       ))}
+
+      <div className="d-flex justify-content-between ">
+        <div>
+          <ButtonComponent
+            label="Previous"
+            style={{
+              backgroundColor: "#086288",
+              color: "#FFFFFF",
+              Fontfamily: "Open Sans, Semibold",
+            }}
+            size="default"
+            onClick={() => handlePreviousClick()}
+          />
+        </div>
+        <div>
+          <ButtonComponent
+            label={completedSteps() === totalSteps() - 1 ? "Submit" : "Next"}
+            style={{
+              backgroundColor: "#086288",
+              color: "#FFFFFF",
+              Fontfamily: "Open Sans, Semibold",
+            }}
+            size="default"
+            onClick={() =>
+              completedSteps() === totalSteps() - 1
+                ? handleNextClick()
+                : handleSubmit()
+            }
+          />
+        </div>
+      </div>
     </div>
   );
 }

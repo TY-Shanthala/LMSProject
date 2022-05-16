@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import EmployeeRoute from "../../routes/EmployeeRoute";
 import EmpSubmitPage from "./submitPage/EmpSubmitPage";
 import { WindowSharp } from "@mui/icons-material";
+import ButtonComponent from "../../atom/ButtonComponent";
 
 const steps = [
   { name: "Primary Info", to: "/primaryInfo" },
@@ -89,6 +90,7 @@ function EmployeeLayout() {
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
+    history("/primaryInfo");
   };
 
   const handleSubmit = () => {
@@ -110,12 +112,26 @@ function EmployeeLayout() {
         <div>
           {allStepsCompleted() ? (
             <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
-              </Typography>
+              <div>
+              { submitPage && <EmpSubmitPage
+                  submitPage={submitPage}
+                  setSubmitPage={setSubmitPage}
+                />}
+              </div>
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                 <Box sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleReset}>Reset</Button>
+                <ButtonComponent
+                  style={{
+                    backgroundColor: "#086288",
+                    color: "#FFFFFF",
+                    Fontfamily: "Open Sans, Semibold",
+                  }}
+                  size="large"
+                  label="Reset"
+                  onClick={handleReset}
+                >
+                  Reset
+                </ButtonComponent>
               </Box>
             </React.Fragment>
           ) : (
@@ -128,10 +144,16 @@ function EmployeeLayout() {
                   setEmpPayload={setEmpPayload}
                   empPayload={empPayload}
                   handleNextClick={handleComplete}
+                  handlePreviousClick={handleBack}
+                  completedSteps={completedSteps}
+                  totalSteps={totalSteps}
+                  submitPage={submitPage}
+                  setSubmitPage={setSubmitPage}
+                  allStepsCompleted={allStepsCompleted}
                 />
               </Box>
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Button
+                {/* <Button
                   variant="contained"
                   style={{
                     background: "#086288",
@@ -144,8 +166,8 @@ function EmployeeLayout() {
                   sx={{ mr: 1 }}
                 >
                   Previous
-                </Button>
-                <Box className="col-8" />
+                </Button> */}
+                {/* <Box className="col-8" /> */}
                 {/* <Button
                   variant="contained"
                   style={{ background: "#086288" }}
@@ -182,9 +204,6 @@ function EmployeeLayout() {
           )}
         </div>
       </Box>
-      {submitPage && (
-        <EmpSubmitPage submitPage={submitPage} setSubmitPage={setSubmitPage} />
-      )}
     </div>
   );
 }

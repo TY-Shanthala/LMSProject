@@ -27,8 +27,9 @@ const adminMentorSubmit = (payload) => {
 };
 
 const adminMentorDelete = (payload) => {
+  console.log(payload, "payload");
   return serviceUtil
-    .deleteAll(`lmsuser/mentordelete?empId=${payload}`)
+    .deleteAll(`lms/v1/admin/mentor/${payload}`)
     .then((res) => {
       const data = res && res.data;
       return { data };

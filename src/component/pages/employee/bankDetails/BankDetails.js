@@ -1,8 +1,14 @@
 import React from "react";
+import ButtonComponent from "../../../atom/ButtonComponent";
 import InputComponent from "../../../atom/InputComponent";
 import SimpleDropdown from "../../../atom/SimpleDropdown";
 
-function BankDetails() {
+function BankDetails({
+  empPayload,
+  setEmpPayload,
+  handleNextClick,
+  handlePreviousClick,
+}) {
   return (
     <div className="m-5">
       <div className="row justify-content-center ">
@@ -36,6 +42,37 @@ function BankDetails() {
               <p className="mb-0">State</p>
               <SimpleDropdown />
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="d-flex justify-content-center pb-5 mb-5">
+        <div
+          style={{ width: "700px" }}
+          className="d-flex justify-content-between "
+        >
+          <div>
+            <ButtonComponent
+              label="Previous"
+              style={{
+                backgroundColor: "#086288",
+                color: "#FFFFFF",
+                Fontfamily: "Open Sans, Semibold",
+              }}
+              size="default"
+              onClick={() => handlePreviousClick()}
+            />
+          </div>
+          <div>
+            <ButtonComponent
+              label="Next"
+              style={{
+                backgroundColor: "#086288",
+                color: "#FFFFFF",
+                Fontfamily: "Open Sans, Semibold",
+              }}
+              size="default"
+              onClick={() => handleNextClick()}
+            />
           </div>
         </div>
       </div>

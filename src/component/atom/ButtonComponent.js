@@ -6,11 +6,11 @@ import "../../style/button.scss";
 
 const useStyles = makeStyles({
   customButtonText: {
-    fontSize: "12px !important",
-    fontWeight: "600 !important",
-    fontFamily: "Open Sans sans-serif",
-    textTransform: "capitalize !important",
-    borderRadius: "2px",
+    // fontSize: "12px !important",
+    // fontWeight: "600 !important",
+    fontFamily: "Open Sans, Semibold",
+    // textTransform: "capitalize !important",
+    // borderRadius: "2px",
   },
 });
 

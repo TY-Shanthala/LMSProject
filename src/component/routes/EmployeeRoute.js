@@ -8,7 +8,17 @@ import Experience from "../pages/employee/experience/Experience";
 import SecondaryInfo from "../pages/employee/secondaryInfo/SecondaryInfo";
 import TechnicalSkills from "../pages/employee/technicalSkills/TechnicalSkills";
 
-const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
+const EmployeeRoute = ({
+  empPayload,
+  setEmpPayload,
+  handleNextClick,
+  handlePreviousClick,
+  completedSteps,
+  totalSteps,
+  submitPage,
+  setSubmitPage,
+  allStepsCompleted,
+}) => {
   const routesObj = [
     {
       element: (
@@ -16,6 +26,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/primaryInfo",
@@ -26,6 +37,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/secondaryInfo",
@@ -36,6 +48,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/educationDetails",
@@ -46,6 +59,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/addressDetails",
@@ -56,6 +70,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/bankDetails",
@@ -66,6 +81,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/technicalSkills",
@@ -76,6 +92,7 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
         />
       ),
       path: "/experience",
@@ -86,6 +103,12 @@ const EmployeeRoute = ({ empPayload, setEmpPayload, handleNextClick }) => {
           empPayload={empPayload}
           setEmpPayload={setEmpPayload}
           handleNextClick={handleNextClick}
+          handlePreviousClick={handlePreviousClick}
+          completedSteps={completedSteps}
+          totalSteps={totalSteps}
+          submitPage={submitPage}
+          setSubmitPage={setSubmitPage}
+          allStepsCompleted={allStepsCompleted}
         />
       ),
       path: "/contact",

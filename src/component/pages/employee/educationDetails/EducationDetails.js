@@ -9,8 +9,15 @@ import InputComponent from "../../../atom/InputComponent";
 import { IconButton, Paper } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ButtonComponent from "../../../atom/ButtonComponent";
 
-function EducationDetails({ empPayload, setEmpPayload, handleNextClick }) {
+function EducationDetails({
+  empPayload,
+  setEmpPayload,
+  handleNextClick,
+  handlePreviousClick,
+  handleNext,
+}) {
   const [defaultFormData, setDefaultFormData] = React.useState([
     {
       educationType: "",
@@ -145,6 +152,32 @@ function EducationDetails({ empPayload, setEmpPayload, handleNextClick }) {
           </AccordionDetails>
         </Accordion>
       ))}
+      <div className="d-flex justify-content-between">
+        <div>
+          <ButtonComponent
+            label="Previous"
+            style={{
+              backgroundColor: "#086288",
+              color: "#FFFFFF",
+              Fontfamily: "Open Sans, Semibold",
+            }}
+            size="large"
+            onClick={() => handlePreviousClick()}
+          />
+        </div>
+        <div>
+          <ButtonComponent
+            label="Next"
+            style={{
+              backgroundColor: "#086288",
+              color: "#FFFFFF",
+              Fontfamily: "Open Sans, Semibold",
+            }}
+            size="large"
+            onClick={() => handleNextClick()}
+          />
+        </div>
+      </div>
     </div>
   );
 }

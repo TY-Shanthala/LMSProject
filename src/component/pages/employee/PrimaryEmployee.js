@@ -5,7 +5,12 @@ import DatePickerComponent from "../../atom/DatePickerComponent";
 import InputComponent from "../../atom/InputComponent";
 import SimpleDropdown from "../../atom/SimpleDropdown";
 
-function PrimaryEmployee({ empPayload, setEmpPayload, handleNextClick }) {
+function PrimaryEmployee({
+  empPayload,
+  setEmpPayload,
+  handleNextClick,
+  handlePreviousClick,
+}) {
   const [defaultFormData, setDefaultFormData] = React.useState({
     empId: "",
     empName: "",
@@ -215,7 +220,7 @@ function PrimaryEmployee({ empPayload, setEmpPayload, handleNextClick }) {
               <SimpleDropdown />
             </div>
           </div>
-          <div className="row d-flex justify-content-between">
+          <div className=" d-flex justify-content-between">
             <div className="m-2 col-5">
               <p className="mb-0">Nationality</p>
               <SimpleDropdown />
@@ -225,7 +230,37 @@ function PrimaryEmployee({ empPayload, setEmpPayload, handleNextClick }) {
               <SimpleDropdown />
             </div>
           </div>
-          <ButtonComponent onClick={() => handleNext()} />
+          <div className="d-flex justify-content-center pb-5 mb-5">
+            <div
+              style={{ width: "700px" }}
+              className="d-flex justify-content-between "
+            >
+              <div>
+                <ButtonComponent
+                  label="Previous"
+                  style={{
+                    backgroundColor: "#086288",
+                    color: "#FFFFFF",
+                    Fontfamily: "Open Sans, Semibold",
+                  }}
+                  size="default"
+                  onClick={() => handlePreviousClick()}
+                />
+              </div>
+              <div>
+                <ButtonComponent
+                  label="Next"
+                  style={{
+                    backgroundColor: "#086288",
+                    color: "#FFFFFF",
+                    Fontfamily: "Open Sans, Semibold",
+                  }}
+                  size="default"
+                  onClick={() => handleNext()}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

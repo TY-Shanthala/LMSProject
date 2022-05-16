@@ -36,33 +36,35 @@ function AdminMentorModel({
   };
 
   const modalValue = "add";
-  const handleSubmit = async () => {
-    const payload = {
-      mentorName: defaultFormData.mentorName,
-      empId: defaultFormData.employeeId,
-      emailId: defaultFormData.email,
-      skills: defaultFormData.skills,
-    };
-    const { data, errRes } =
-      modalValue === "add"
-        ? await adminMentorSubmit(payload)
-        : await adminMentorSubmit(payload);
+  // const handleSubmit = async () => {
+  //   const payload = {
+  //     mentorName: defaultFormData.mentorName,
+  //     empId: defaultFormData.employeeId,
+  //     emailId: defaultFormData.email,
+  //     skills: defaultFormData.skills,
+  //   };
+  //   const { data, errRes } =
+  //     modalValue === "add"
+  //       ? await adminMentorSubmit(payload)
+  //       : await adminMentorSubmit(payload);
 
-    if (data) {
-      await getTableData();
-    } else if (errRes) {
-      console.log(errRes.message);
-    } else {
-      console.log("Something went wrong");
-    }
-    setOpenMentor(false);
-  };
-  console.log(defaultFormData.skills);
+  //   if (data) {
+  //     await getTableData();
+  //   } else if (errRes) {
+  //     console.log(errRes.message);
+  //   } else {
+  //     console.log("Something went wrong");
+  //   }
+  //   setOpenMentor(false);
+  // };
+  // console.log(defaultFormData.skills);
 
   return (
     <div>
       <ModalComponent
-        onSubmitBtnClick={handleSubmit}
+        onSubmitBtnClick={()=>{}}
+        // onSubmitBtnClick={handleSubmit}
+
         submitBtnText="Create"
         modalWidth={"450px"}
         modalTitle={"Add new mentor"}
